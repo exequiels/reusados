@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+/* Seccion Principal */
+
+body {
+  background: #f3f0e9;
+  display: block;
+  font: 400 12px/18px "Press Start 2P", cursive, "Source Code Pro", Inconsolata,
+    "Lucida Console", Terminal, "Courier New", Courier;
+  padding: 24px 15px;
+  border: 10px solid #f3f0e9;
+  padding: 10px;
+  box-sizing: border-box;
+}
+header,
+section,
+aside,
+footer {
+  margin: 10px 1.5% 24px 1.5%;
+  background-color: #2a4f6e;
+}
+section {
+  float: left;
+  width: 30%;
+}
+footer {
+  clear: both;
+  margin-bottom: 0;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.no-border-left {
+  border-left: none;
+}
+
+.no-border-right {
+  border-right: none;
+}
+
+.custom {
+  background-color: #f3f0e9;
+  padding: 10px;
+  border: 20px solid #2a4f6e;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.border-estilo {
+  border: 2px solid #b000ff;
+}
+
+/* Imagenes chiquitas */
+#floatleft {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+#floatright {
+  float: right;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+/* Esconder */
+.hidden {
+  display: none;
+}
+
+/* Inputs filtros */
+.filtros {
+  height: 30px;
+}
+
+/* Pie chart */
+#myChart {
+  width: 50%;
+}
+
+/* Input text */
+.cs-text {
+  font-size: 12px;
+}
+
+/* Media query para fuentes del pagination */
+@media (max-width: 767px) {
+  .custom {
+    background-color: #f3f0e9;
+    padding: 8px;
+    border: 18px solid #2a4f6e;
+    box-sizing: border-box;
+  }
+  body {
+    padding: 22px 12px;
+    border: 8px solid #f3f0e9;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  .custom-h7 {
+    font-size: 8px;
+  }
+  h6 {
+    font-size: 12px;
+    text-decoration: none;
+  }
+  .pagination .page-link {
+    font-size: 12px;
+  }
+}
+
+/* Inputs filtros */
+@media (max-width: 767px) {
+  .filtros {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+  .paginacion-custom .page-link {
+    font-size: 10px;
+    padding: 3px 5px;
+  }
+}
+
+/* Chart pie */
+@media (max-width: 768px) {
+  #myChart {
+    width: 100%;
+  }
+}
