@@ -1,4 +1,6 @@
 <?php
+require_once "globales/variables.php";
+
 $mensaje_confirmacion = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -6,14 +8,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = htmlspecialchars($_POST["email"]);
     $mensaje = htmlspecialchars($_POST["mensaje"]);
 
-    $destinatario = "omles84@gmail.com";
     $asunto = "Mensaje de contacto de $nombre";
     $contenido = "Nombre: $nombre\n";
     $contenido .= "Correo electrónico: $email\n";
     $contenido .= "Mensaje:\n$mensaje";
 
     // Envía el correo
-    if (mail($destinatario, $asunto, $contenido)) {
+    if (mail($contacto_destinatario, $asunto, $contenido)) {
         $mensaje_confirmacion = "Mensaje enviado :)";
     } else {
         $mensaje_confirmacion = "Error al enviar el mensaje :(";
