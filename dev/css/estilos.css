@@ -48,6 +48,7 @@ footer {
   box-sizing: border-box;
 }
 
+/* Bordes tabla */
 .border-estilo {
   border: 0px solid #b000ff;
 }
