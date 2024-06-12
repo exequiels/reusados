@@ -82,7 +82,7 @@
 
                     if(categoria) {
                         $.ajax({
-                            url: "handlers/subcategorias.php",
+                            url: "utils/subcategorias.php",
                             type: "POST", 
                             data: {'categoria':categoria, 'pais':pais},
                             beforeSend: function(xhr, settings){
