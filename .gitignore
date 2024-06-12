@@ -1,6 +1,13 @@
 .htaccess
+.htaccess.prod
+.htaccess.test
+.htaccess.dev
 cron_function.php
 cron_function2.php
+buscador_resetear_filtros.js
+buscador_url.js
+tendencias_resetear_filtros.js
+tendencias_url.js
 deprecated
 backend
 mercado
