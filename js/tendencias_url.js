@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    const url = "https://dev.reusados.net/?dir=tendencias";
+    const url = "https://www.reusados.net/?dir=tendencias";
 
     if (params.length > 0) {
       const newUrl = url + "&" + params.join("&");
