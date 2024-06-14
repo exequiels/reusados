@@ -15,27 +15,20 @@ require_once 'connectar.php';
 
         <!-- Main Content -->
         <div class="container mt-2 mt-sm-4">
-
             <div class="row">
                 
-            <!-- Topbar -->
-            <div class="col-10 col-sm-11 col-md-11 col-lg-12 mx-auto">
-                <div class="row">
-                    <?php require_once "layout/topbar.php"; ?>
-                </div>                
-            </div>
-            <!-- // Topbar -->
-
-                <!-- Menu -->
-                <div class="col-lg-2 col-10 col-sm-11 mx-auto">
+                <!-- Menus -->
+                <div class="col-lg-2">
+                    <!-- Menu -->
                     <div class="row">
                         <?php require_once "layout/menu.php"; ?>
                     </div>
+                    <!-- // Menu -->
                 </div>
-                <!-- // Menu -->
+                <!-- // Menus -->
 
                 <!-- Seccion central -->
-                <div class="col-lg-9 central-item col-10 col-sm-11 mx-auto">
+                <div class="col-lg-10 central-item">
                     <?php
                     $universo = isset($_GET['dir']) ? $_GET['dir'] : 'buscador';
 $universo = filter_input(INPUT_GET, 'dir', FILTER_SANITIZE_SPECIAL_CHARS);
