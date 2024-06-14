@@ -5,6 +5,7 @@
                 $dir = isset($_GET['dir']) ? $_GET['dir'] : '';
             require_once "paginas_permitidas.php";
             if ($dir !== '' && in_array($dir, $allowed_pages)) {
+                $dir = str_replace('-', ' ', $dir);
                 echo ucfirst($dir);
             } else {
                 echo 'Buscador';
