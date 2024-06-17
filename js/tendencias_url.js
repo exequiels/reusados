@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    const url = "${desvioUrl}?dir=tendencias";
+    const url = baseUrl + "?dir=tendencias";
 
     if (params.length > 0) {
       const newUrl = url + "&" + params.join("&");

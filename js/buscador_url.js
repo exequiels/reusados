@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    const url = "${desvioUrl}/?dir=buscador";
+    const url = baseUrl + "?dir=buscador";
 
     if (params.length > 0) {
       const newUrl = url + "&" + params.join("&");
