@@ -1,7 +1,7 @@
 <table class="table table-sm table-bordered border-estilo">
     <?php include_once "globales/encabezado_de_tabla.php"; ?>
-    <tr class="p-sm-1 p-3"> 
-        <td class="p-sm-1 p-3">
+    <tr class="p-3"> 
+        <td class="p-3" colspan="2">
             <form role="form" name="registro" action="#" method="post">                
                 <div class="form-group mt-3">
                     <label for="username">Nombre de usuario:</label>

@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    const url = "https://test.reusados.net/?dir=buscador";
+    const url = "http://localhost/reusados/?dir=buscador";
 
     if (params.length > 0) {
       const newUrl = url + "&" + params.join("&");

@@ -1,4 +1,3 @@
-<!-- Topbar -->
 <table class="table table-sm table-bordered border-estilo">
     <tr>
         <td class="py-1 px-3">
@@ -16,4 +15,3 @@
         </td>
     </tr>
 </table>
-<!-- // Topbar -->

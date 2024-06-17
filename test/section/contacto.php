@@ -25,38 +25,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include_once "globales/encabezado_de_tabla.php"; ?>
     <tr class="p-3"> 
         <td class="p-3" colspan="2">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12">
-                        <?php if (!empty($mensaje_confirmacion)): ?>
-                        <div class="mensaje-confirmacion">
-                            <?php echo $mensaje_confirmacion; ?>
-                        </div>
-                        <?php else: ?>
-                            <form action="" method="POST">
-                                <div class="form-group mt-3">
-                                    <label for="nombre">Nombre:</label>
-                                    <input type="text" id="nombre" name="nombre" maxlength="30" required class="w-100">
-                                </div>
-
-                                <div class="form-group mt-3">
-                                    <label for="email">Correo electrónico:</label>
-                                    <input type="email" id="email" name="email" maxlength="60" required class="w-100">
-                                </div>
-
-                                <div class="form-group mt-3">
-                                    <label for="mensaje">Mensaje:</label>
-                                    <textarea id="mensaje" name="mensaje" rows="4" maxlength="3000" required class="w-100"></textarea>
-                                </div>
-
-                                <div class="d-flex justify-content-end mt-3">
-                                    <button type="submit">Enviar</button>
-                                </div>
-                            </form>
-                        <?php endif; ?>
-                    </div>
-                </div>
+            <?php if (!empty($mensaje_confirmacion)): ?>
+            <div class="mensaje-confirmacion">
+                <?php echo $mensaje_confirmacion; ?>
             </div>
+            <?php else: ?>
+                <form action="" method="POST">
+                    <div class="form-group mt-3">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" maxlength="30" required class="w-100">
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" id="email" name="email" maxlength="60" required class="w-100">
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea id="mensaje" name="mensaje" rows="4" maxlength="3000" required class="w-100"></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-end mt-3">
+                        <input type="submit" value="Enviar">
+                    </div>
+                </form>
+            <?php endif; ?>
         </td>
     </tr>
 </table>
