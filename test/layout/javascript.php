@@ -21,8 +21,14 @@
 <!-- Buscador -->
 <?php if ($universo === 'buscador'): ?>
     <!-- Armar url -->
+    <script type="text/javascript">
+        const baseUrl = "<?php echo htmlspecialchars($url_base, ENT_QUOTES, 'UTF-8'); ?>";
+    </script>
     <script src="js/buscador_url.js"></script>
     <!-- Resetear filtros -->
+    <script type="text/javascript">
+        const desvioUrl = "<?php echo htmlspecialchars($desvioUrl, ENT_QUOTES, 'UTF-8'); ?>";
+    </script>
     <script src="js/buscador_resetear_filtros.js"></script>
 <?php endif; ?>
 <!-- // Buscador -->

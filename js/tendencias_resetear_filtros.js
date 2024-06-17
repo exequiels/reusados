@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .addEventListener("click", function (event) {
       if (event.target && event.target.id === "resetearbtn") {
         event.preventDefault();
-        window.location.href = "http://localhost/reusados/?dir=tendencias";
+        window.location.href = "${baseUrl}/?dir=tendencias";
       }
     });
 });
