@@ -5,13 +5,7 @@
         <?php include_once "globales/encabezado_de_tabla.php"; ?>
         <tr class="p-3">
             <td class="p-3" colspan="2">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-12">
-                            <?php require_once "layout/filtros_tendencias.php"; ?>
-                        </div>
-                    </div>
-                </div>
+                <?php require_once "layout/filtros_tendencias.php"; ?>
             </td>
         </tr>
     </table>
