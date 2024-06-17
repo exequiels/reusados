@@ -109,24 +109,17 @@
                     const categoria = $(this).val();
                     const pais = $('#pais').val();
 
-                    console.log("Categoria seleccionada:", categoria);
-                    console.log("Pais seleccionada:", pais);
-
                     if(categoria) {
                         $.ajax({
                             url: "utils/subcategorias.php",
                             type: "POST", 
                             data: {'categoria':categoria, 'pais':pais},
                             beforeSend: function(xhr, settings){
-                                console.log("Que vamos a enviar?");
-                                console.log(settings.data);
                             },
                             success: function(data){
-                                console.log("Datos:", data);
                                 $('#subcategoriaSelect').html(data);
                             },
                             error: function(jqXHR, textStatus, errorThrown) {
-                                console.log("AJAX error: ", textStatus, errorThrown);
                             }
                         });
                     } else {
@@ -135,10 +128,4 @@
                 });
             });
         </script>
-        <div class="p-2 flex-item d-flex justify-content-end">
-            <input type="submit" value="Resetear" id="resetearbtn">
-            <?php } ?>
-            <input type="submit" value="Buscar" class="mx-2">
-        </div>
-    </div>
 </form>
