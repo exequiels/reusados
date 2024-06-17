@@ -19,7 +19,7 @@ require_once 'connectar.php';
             <div class="row">
                 
             <!-- Topbar -->
-            <div class="col-10 col-sm-11 col-md-11 col-lg-12 mx-auto">
+            <div class="col-lg-12 col-md-11 col-sm-11 col-10 mx-auto">
                 <div class="row">
                     <?php require_once "layout/topbar.php"; ?>
                 </div>                
@@ -27,7 +27,7 @@ require_once 'connectar.php';
             <!-- // Topbar -->
 
                 <!-- Menu -->
-                <div class="col-lg-2 col-10 col-sm-11 mx-auto">
+                <div class="col-lg-2 col-sm-11 col-10 mx-auto">
                     <div class="row">
                         <?php require_once "layout/menu.php"; ?>
                     </div>
@@ -35,7 +35,8 @@ require_once 'connectar.php';
                 <!-- // Menu -->
 
                 <!-- Seccion central -->
-                <div class="col-lg-9 central-item col-10 col-sm-11 mx-auto">
+                <div class="col-lg-9 col-md-11 col-sm-11 col-10 mx-auto central-item">
+                    <div class="row">
                     <?php
                     $universo = isset($_GET['dir']) ? $_GET['dir'] : 'buscador';
 $universo = filter_input(INPUT_GET, 'dir', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -48,6 +49,7 @@ if(file_exists($path)) {
     echo "Error: Tal vez en un futuro no muy lejano..";
 }
 ?>
+                    </div>
                 </div>
                 <!-- // Seccion central -->
 
