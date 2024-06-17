@@ -309,5 +309,7 @@
         </tr>
     <?php endif; ?>
     </table>
-<?php require_once "layout/paginacion.php"; ?>
+    <div class="d-flex justify-content-center">
+        <?php require_once "layout/paginacion.php"; ?>
+    </div>
 <?php } ?>
