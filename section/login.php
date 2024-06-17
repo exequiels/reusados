@@ -2,7 +2,9 @@
     <?php include_once "globales/encabezado_de_tabla.php"; ?>
     <tr class="p-3"> 
         <td class="p-3" colspan="2">
-            Ya estas logueado ..
+            <div class="form-group mt-3">
+                Ya estas logueado ..
+            </div>
         </td>
     </tr>
 </table>

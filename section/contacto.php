@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <tr class="p-3"> 
         <td class="p-3" colspan="2">
             <?php if (!empty($mensaje_confirmacion)): ?>
-            <div class="mensaje-confirmacion">
+            <div class="form-group mt-3 mensaje-confirmacion">
                 <?php echo $mensaje_confirmacion; ?>
             </div>
             <?php else: ?>
