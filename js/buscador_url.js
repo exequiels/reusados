@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    const url = "<?php echo $url_base; ?>";
+    const url = "https://test.reusados.net/?dir=buscador";
 
     if (params.length > 0) {
       const newUrl = url + "&" + params.join("&");
