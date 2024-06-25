@@ -33,17 +33,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <form action="" method="POST">
                     <div class="form-group mt-3">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" maxlength="30" required class="w-100">
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" maxlength="30" required class="w-100">
                     </div>
 
                     <div class="form-group mt-3">
                         <label for="email">Correo electrónico:</label>
-                        <input type="email" id="email" name="email" maxlength="60" required class="w-100">
+                        <input type="email" id="email" name="email" placeholder="Email" maxlength="60" required class="w-100">
                     </div>
 
                     <div class="form-group mt-3">
                         <label for="mensaje">Mensaje:</label>
-                        <textarea id="mensaje" name="mensaje" rows="4" maxlength="3000" required class="w-100"></textarea>
+                        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Mensaje.." maxlength="3000" required class="w-100"></textarea>
                     </div>
 
                     <div class="d-flex justify-content-end mt-3">
