@@ -18,6 +18,12 @@
 <?php endif; ?>
 <!-- // Inicio -->
 
+<!-- Registrarse -->
+<?php if ($universo === 'registrarse'): ?>
+    <script src="js/validacion_registro.js"></script>
+<?php endif; ?>
+<!-- // Registrarse  -->
+
 <!-- Buscador -->
 <?php if ($universo === 'buscador'): ?>
     <script type="text/javascript">
