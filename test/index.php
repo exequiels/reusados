@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 require_once 'connectar.php';
 ?>
 <!-- Head -->
@@ -42,7 +42,7 @@ require_once 'connectar.php';
 $universo = filter_input(INPUT_GET, 'dir', FILTER_SANITIZE_SPECIAL_CHARS);
 require_once "globales/paginas_permitidas.php";
 $universo = in_array($universo, $allowed_pages) ? $universo : 'buscador';
-$path = 'section/' . $universo . '.php';
+$path = 'pagina/' . $universo . '.php';
 if(file_exists($path)) {
     require_once $path;
 } else {
