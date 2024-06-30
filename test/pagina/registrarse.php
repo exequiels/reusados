@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $token_activacion = bin2hex(random_bytes(16));
-            $hashed_token = password_hash($activation_token, PASSWORD_DEFAULT);
+            $hashed_token = password_hash($token_activacion, PASSWORD_DEFAULT);
 
             $stmt = $pdo->prepare("INSERT INTO usuarios (username, fullname, email, password, token_activacion, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
             $stmt->execute([$username, $fullname, $email, $hashed_password, $hashed_token]);
