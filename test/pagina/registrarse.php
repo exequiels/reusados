@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$username, $fullname, $email, $hashed_password, $hashed_token]);
 
             $asunto = 'Activación de cuenta';
-            $link_activacion = "$url_base?dir=activacion&token=$token_activacion";
+            $link_activacion = "$url_base?dir=activacion&token=$hashed_token";
             $mensaje = "Haz click en el siguiente enlace para activar tu cuenta: $link_activacion";
             $headers = "From: no-responder@reusados.net\r\n";
             $headers .= "Reply-To: no-responder@reusados.net\r\n";
