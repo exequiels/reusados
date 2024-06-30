@@ -70,12 +70,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $token_activacion = bin2hex(random_bytes(16));
+            $hashed_token = password_hash($activation_token, PASSWORD_DEFAULT);
 
             $stmt = $pdo->prepare("INSERT INTO usuarios (username, fullname, email, password, token_activacion, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
-            $stmt->execute([$username, $fullname, $email, $hashed_password, $token_activacion]);
+            $stmt->execute([$username, $fullname, $email, $hashed_password, $hashed_token]);
 
             $asunto = 'Activación de cuenta';
-            $link_activacion = "https://www.reusados.net/?dir=activacion&token=$token_activacion";
+            $link_activacion = "$url_base?dir=activacion&token=$token_activacion";
             $mensaje = "Haz click en el siguiente enlace para activar tu cuenta: $link_activacion";
             $headers = "From: no-responder@reusados.net\r\n";
             $headers .= "Reply-To: no-responder@reusados.net\r\n";
