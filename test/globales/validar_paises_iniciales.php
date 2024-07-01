@@ -1,3 +1,3 @@
 <?php
 
-$paises = ["MLA"];
+$paises_iniciales = ["mla"];

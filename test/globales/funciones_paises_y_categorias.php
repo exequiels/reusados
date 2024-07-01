@@ -5,11 +5,11 @@ function convertirPais($pais)
 {
     switch ($pais) {
         case "argentina":
-            return "MLA";
+            return "mla";
         case "paraguay":
-            return "MLP";
+            return "mlp";
         case "chile":
-            return "MLC";
+            return "mlc";
         default:
             return "";
     }

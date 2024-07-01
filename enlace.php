@@ -26,7 +26,7 @@ if (isset($_GET['dot'])) {
     $currentDate = date("Y-m-d");
 
     // Validar datos
-    if (!in_array($pais, $paises) || !in_array($categoria, $categorias) || !in_array($subcategoria, $subcategorias)) {
+    if (!in_array($pais, $paises_iniciales) || !in_array($categoria, $categorias) || !in_array($subcategoria, $subcategorias)) {
 
         header("Location:" . $desvioUrl);
         //echo "Error 033";
