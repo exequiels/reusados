@@ -16,6 +16,13 @@ $confirmPasswordError = '';
 $captchaError = '';
 $registrado = '';
 
+function encryptEmail($email, $key_emails)
+{
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+    $encrypted = openssl_encrypt($email, 'aes-256-cbc', $key_emails, 0, $iv);
+    return base64_encode($encrypted . '::' . $iv);
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
@@ -71,9 +78,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $token_activacion = bin2hex(random_bytes(16));
             $hashed_token = password_hash($token_activacion, PASSWORD_DEFAULT);
+            $encrypted_email = encryptEmail($email, $key_emails);
 
             $stmt = $pdo->prepare("INSERT INTO usuarios (username, fullname, email, password, token_activacion, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
-            $stmt->execute([$username, $fullname, $email, $hashed_password, $hashed_token]);
+            $stmt->execute([$username, $fullname, $encrypted_email, $hashed_password, $hashed_token]);
 
             $asunto = 'Activación de cuenta';
             $link_activacion = "$url_base?dir=activacion&token=$hashed_token";

@@ -7,3 +7,4 @@ $key_enlaces = getenv('KEY_ENLACES');
 $header_title = getenv('HEADER_TITLE');
 $navbar_title = getenv('NAVBAR_TITLE');
 $contacto_destinatario = getenv('CONTACTO_DESTINATARIO');
+$key_emails = getenv('KEY_EMAILS');
