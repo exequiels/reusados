@@ -19,11 +19,11 @@ require_once 'connectar.php';
             <div class="row">
                 
             <!-- Topbar -->
-            <!-- <div class="col-lg-12 col-md-11 col-sm-11 col-10 mx-auto">
+            <div class="col-lg-12 col-md-11 col-sm-11 col-10 mx-auto">
                 <div class="row">
-                    <//?php require_once "layout/topbar.php"; ?>
+                    <?php require_once "layout/topbar.php"; ?>
                 </div>                
-            </div> -->
+            </div>
             <!-- // Topbar -->
 
                 <!-- Menu -->
