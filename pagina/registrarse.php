@@ -1,4 +1,5 @@
 <?php
+require_once 'utils/email_encrypt_functions.php';
 $pagina_registrarse = $url_base . "?dir=registrarse";
 
 $username = '';
@@ -32,8 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $usernameErrors[] = "El nombre de usuario ya está en uso, elije otro.";
         }
 
+        $encryptedEmail = encryptEmail($email, $key_emails, $key_emails_iv);
+
         $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuarios WHERE email = ?");
-        $stmt->execute([$email]);
+        $stmt->execute([$encryptedEmail]);
         $count = $stmt->fetchColumn();
         if ($count > 0) {
             $emailErrors[] = "El email ya está registrado.";
@@ -70,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $hashed_token = password_hash($token_activacion, PASSWORD_DEFAULT);
 
             $stmt = $pdo->prepare("INSERT INTO usuarios (username, fullname, email, password, token_activacion, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
-            $stmt->execute([$username, $fullname, $email, $hashed_password, $hashed_token]);
+            $stmt->execute([$username, $fullname, $encryptedEmail, $hashed_password, $hashed_token]);
 
             $asunto = 'Activación de cuenta';
             $link_activacion = "$url_base?dir=activacion&token=$hashed_token";

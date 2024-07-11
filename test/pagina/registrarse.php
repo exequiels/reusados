@@ -1,7 +1,5 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+require_once 'utils/email_encrypt_functions.php';
 $pagina_registrarse = $url_base . "?dir=registrarse";
 
 $username = '';
@@ -15,13 +13,6 @@ $passwordError = '';
 $confirmPasswordError = '';
 $captchaError = '';
 $registrado = '';
-
-function encryptEmail($email, $key_emails)
-{
-    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
-    $encrypted = openssl_encrypt($email, 'aes-256-cbc', $key_emails, 0, $iv);
-    return base64_encode($encrypted . '::' . $iv);
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -42,8 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $usernameErrors[] = "El nombre de usuario ya está en uso, elije otro.";
         }
 
+        $encryptedEmail = encryptEmail($email, $key_emails, $key_emails_iv);
+
         $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuarios WHERE email = ?");
-        $stmt->execute([$email]);
+        $stmt->execute([$encryptedEmail]);
         $count = $stmt->fetchColumn();
         if ($count > 0) {
             $emailErrors[] = "El email ya está registrado.";
@@ -78,10 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $token_activacion = bin2hex(random_bytes(16));
             $hashed_token = password_hash($token_activacion, PASSWORD_DEFAULT);
-            $encrypted_email = encryptEmail($email, $key_emails);
 
             $stmt = $pdo->prepare("INSERT INTO usuarios (username, fullname, email, password, token_activacion, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
-            $stmt->execute([$username, $fullname, $encrypted_email, $hashed_password, $hashed_token]);
+            $stmt->execute([$username, $fullname, $encryptedEmail, $hashed_password, $hashed_token]);
 
             $asunto = 'Activación de cuenta';
             $link_activacion = "$url_base?dir=activacion&token=$hashed_token";
