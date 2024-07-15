@@ -1,7 +1,5 @@
 <?php
 
-require_once '../connectar.php';
-
 try {
     if (isset($_POST['categoria'])) {
         $pais = isset($_POST['pais']) ? $_POST['pais'] : '';

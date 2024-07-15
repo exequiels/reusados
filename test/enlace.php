@@ -1,18 +1,18 @@
 <?php
 
 // Validar datos GET
-require_once "globales/validar_paises_iniciales.php"; // paises
-require_once "globales/validar_categorias.php"; // categorias
-require_once "globales/validar_subcategorias.php"; // subcategorias
-require_once "globales/variables.php"; // variables globales
+require_once "validaciones/validar_paises_iniciales.php"; // paises
+require_once "validaciones/validar_categorias.php"; // categorias
+require_once "validaciones/validar_subcategorias.php"; // subcategorias
+require_once "config/variables.php"; // variables
 
 if (isset($_GET['dot'])) {
     $encryptedData = $_GET['dot'];
+    echo $encryptedData;
 
     // Desencriptar
     $key = $key_enlaces;
     $decryptedData = base64_decode($encryptedData);
-    $decryptedData = substr($decryptedData, 0, -strlen($key));
 
     // Parsear JSON
     $params = json_decode($decryptedData, true);
@@ -29,11 +29,11 @@ if (isset($_GET['dot'])) {
     if (!in_array($pais, $paises_iniciales) || !in_array($categoria, $categorias) || !in_array($subcategoria, $subcategorias)) {
 
         header("Location:" . $desvioUrl);
-        //echo "Error 033";
+        echo "Error 033";
         exit();
     }
 
-    include_once "connectar.php";
+    include_once "config/connectar.php";
 
     $tabla = $pais . "_" . $categoria . "_clicks";
     try {
