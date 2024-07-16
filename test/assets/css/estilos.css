@@ -90,7 +90,7 @@ footer {
 #screen {
   position: relative;
   background-color: green;
-  height: 250px;
+  height: 330px;
 }
 
 #scanlines,
@@ -153,6 +153,9 @@ footer {
   }
   .pagination .page-link {
     font-size: 12px;
+  }
+  #screen {
+    height: 250px;
   }
 }
 

@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($user['status'] == 1) {
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['rol'] = $user['rol'];
-                    echo "<script>window.location.href = '$pagina_login';</script>";
+                    header("Location:" . $pagina_login);
                     exit();
                 } else {
                     $errors[] = 'Tu cuenta no está activada. Por favor, verifica tu correo electrónico para activarla.';

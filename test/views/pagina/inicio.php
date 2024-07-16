@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 ?>
 <table class="table table-sm table-bordered border-estilo mb-1">
-    <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
+    <?//php include_once "views/layout/encabezado_de_tabla.php"; ?>
     <tr class="p-3"> 
         <td class="text-white" colspan="2">            
             <article>

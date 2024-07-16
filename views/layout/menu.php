@@ -35,7 +35,6 @@ if (!empty($_SESSION['user_id'])) {
         <td class="py-3 px-3"><a href="?dir=usuarios">Usuarios</a></td>
     </tr>
 </table>
-
 <!-- <//?php if (!empty($_SESSION['user_id'])): ?>
     <//?php if ($userRole == 'usuario' || $userRole == 'admin'): ?>
         <table class="table table-sm table-bordered border-estilo">

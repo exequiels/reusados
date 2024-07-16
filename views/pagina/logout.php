@@ -5,9 +5,7 @@ $tipo_de_logout = isset($_GET['out']) ? $_GET['out'] : 'default';
 if (isset($_GET['dir']) && $_GET['dir'] === 'logout') {
     if ($tipo_de_logout === 'auto') {
         session_destroy();
-        echo "<script>
-                window.location.href = '$pagina_logout';
-              </script>";
+        header("Location:" . $pagina_logout);
         exit();
     }
 }
