@@ -5,7 +5,7 @@ $(document).ready(function () {
     const $iconToRotate = $(`#${iconId}`);
 
     // Esconder en pantallas pequeñas
-    if ($(window).width() <= 768) {
+    if ($(window).width() <= 1280) {
       $menuItems.addClass("hidden");
       $iconToRotate.attr("transform", "rotate(180)"); // Rotar icono
     }

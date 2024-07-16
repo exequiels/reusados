@@ -5,19 +5,22 @@
                 <?php if (isset($_SESSION['user_id'])): ?>
                     <div class="col-12 col-sm-auto me-sm-2 mt-1 mb-1">
                         <div class="d-flex">
-                            <div class="col-4 col-sm-auto me-sm-2 mt-1 mb-1">
+                            <div class="col-6 col-sm-auto me-sm-2 mt-1 mb-1">
                                 <button type="button" class="w-100 border border-dark-subtle p-2"><a href="?dir=mi-perfil">Perfil</a></button>
                             </div>
-                            <div class="col-4 col-sm-auto me-sm-2 mt-1 mb-1">
+                            <div class="col-6 col-sm-auto me-sm-2 mt-1 mb-1 d-none d-sm-block">
                                 <button type="button" class="w-100 border border-dark-subtle p-2"><a href="?dir=cpanel">Cpanel</a></button>
                             </div>
-                            <div class="col-4 col-sm-auto me-sm-2 mt-1 mb-1 d-block d-sm-none">
+                            <div class="col-6 col-sm-auto me-sm-2 mt-1 mb-1 d-block d-sm-none">
                                 <form action="?dir=logout&out=auto" method="post">
                                     <button type="submit" class="w-100 border border-dark-subtle p-2">
                                         Cerrar
                                     </button>
                                 </form>
                             </div>
+                        </div>
+                        <div class="col-12 col-sm-auto me-sm-2 mt-1 mb-1 d-block d-sm-none">
+                            <button type="button" class="w-100 border border-dark-subtle p-2"><a href="?dir=cpanel">Cpanel</a></button>
                         </div>
                     </div>
                     <div class="col-12 col-sm-auto me-sm-2 mt-1 mb-1 d-none d-sm-block">
