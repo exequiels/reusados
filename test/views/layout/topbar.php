@@ -27,20 +27,17 @@
                         </form>
                     </div>         
                 <?php else: ?>
-                    <div class="col-12 col-sm-auto me-sm-2 mt-1 mb-1 d-none d-md-block">
-                        <button class="w-100 border border-dark-subtle p-2">
-                            <a href="?dir=registrarse">Registrarse</a>
-                        </button>
-                    </div>
-                    <div class="col-12 col-sm-auto me-sm-2 mt-1 mb-1 d-none d-md-block">
-                        <button class="w-100 border border-dark-subtle p-2"><a href="?dir=login">Login</a></button>
-                    </div>
-                    <div class="col-12 col-sm-auto me-sm-2 mt-1 mb-1 d-block d-md-none">
-                        <button class="w-100 border border-dark-subtle p-2">
-                            <a href="?dir=registrarse">Registrarse</a>
-                            /
-                            <a href="?dir=login"> Login</a>
-                        </button>
+                    <div class="col-12 col-sm-auto me-sm-2 mt-1 mb-1">
+                        <div class="d-flex">
+                            <div class="col-7 col-sm-auto me-sm-2 mt-1 mb-1">
+                                <button class="w-100 border border-dark-subtle p-2">
+                                    <a href="?dir=registrarse">Register</a>
+                                </button>
+                            </div>
+                            <div class="col-5 col-sm-auto me-sm-2 mt-1 mb-1">
+                                <button class="w-100 border border-dark-subtle p-2"><a href="?dir=login">Login</a></button>
+                            </div>
+                        </div>
                     </div>
                 <?php endif; ?>
             </div>
