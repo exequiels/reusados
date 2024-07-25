@@ -29,9 +29,6 @@ try {
             case "juguetes":
                 $categoria = "juguetes";
                 break;
-            case "videojuegos":
-                $categoria = "consolasyvideojuegos";
-                break;
             case "filatelia":
                 $categoria = "estampillas";
                 break;
@@ -48,10 +45,16 @@ try {
 
         // Construct the base SQL query
         if ($pais && $categoria) {
+            // $sql = $pdo->prepare("
+            //     (SELECT DISTINCT all_item_categoria FROM " . $pais . "_" . $categoria . "_principal)
+            //     UNION
+            //     (SELECT DISTINCT all_item_categoria FROM " . $pais . "_" . $categoria . "_menos)
+            //     ORDER BY all_item_categoria ASC
+            // ");
+            // $sql->execute();
             $sql = $pdo->prepare("
-                (SELECT DISTINCT all_item_categoria FROM " . $pais . "_" . $categoria . "_mas)
-                UNION
-                (SELECT DISTINCT all_item_categoria FROM " . $pais . "_" . $categoria . "_menos)
+                SELECT DISTINCT all_item_categoria 
+                FROM " . $pais . "_" . $categoria . "_principal
                 ORDER BY all_item_categoria ASC
             ");
             $sql->execute();
@@ -68,7 +71,7 @@ try {
                     echo "<option value=\"" . strtolower($opcionFiltrada) . "\" " . (isset($_GET['subcategoria']) && $_GET['subcategoria'] === strtolower($opcionFiltrada) ? 'selected' : '') . ">" . $opcionFiltrada . "</option>";
                 }
             } else {
-                echo "No Matching Projects Found for this Dashboard Type";
+                echo "No hay match";
             }
         }
     } else {

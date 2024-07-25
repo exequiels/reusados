@@ -1,5 +1,5 @@
 <!-- Bootstrap bundle -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
 <!-- Menu -->
     <!-- Esconder o mostrar -->
@@ -24,8 +24,8 @@
 <?php endif; ?>
 <!-- // Registrarse  -->
 
-<!-- Cirujear -->
-<?php if ($universo === 'cirujear'): ?>
+<!-- Gamehunt -->
+<?php if ($universo === 'gamehunt'): ?>
     <script type="text/javascript">
         const baseUrl = "<?php echo htmlspecialchars($url_base, ENT_QUOTES, 'UTF-8'); ?>";
         const desvioUrl = "<?php echo htmlspecialchars($desvioUrl, ENT_QUOTES, 'UTF-8'); ?>";
@@ -35,10 +35,10 @@
     <!-- Resetear filtros -->
     <script src="assets/js/buscador_resetear_filtros.js"></script>
 <?php endif; ?>
-<!-- // Cirujear -->
+<!-- // Gamehunt -->
 
 <!-- Tendencias -->
-<?php if ($universo === 'tendencias'): ?>
+<?php if ($universo === 'rankings'): ?>
     <script type="text/javascript">
         const baseUrl = "<?php echo htmlspecialchars($url_base, ENT_QUOTES, 'UTF-8'); ?>";
         const desvioUrl = "<?php echo htmlspecialchars($desvioUrl, ENT_QUOTES, 'UTF-8'); ?>";

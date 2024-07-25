@@ -56,4 +56,11 @@ class UserModel
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['username'];
     }
+
+    public function getAllUsers()
+    {
+        $stmt = $this->pdo->prepare("SELECT id, username, rol, created_at FROM usuarios");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

@@ -1,4 +1,6 @@
-<?php if (!isset($_GET['pais']) || !isset($_GET['categoria'])) {
+<?php 
+    check_auth(['usuario', 'admin']);
+    if (!isset($_GET['pais']) || !isset($_GET['categoria'])) {
     $onGoingSearch = false;
     ?>
     <table class="table table-sm table-bordered border-estilo">
@@ -12,7 +14,7 @@
 <?php } else {
     $onGoingSearch = true;
     // Pagina default cuando las busquedas se salen de las validaciones
-    $pagina_buscador = $url_base . "?dir=buscador";
+    $pagina_buscador = $url_base . "?dir=gamehunt";
     $noHayResultados = "No hay resultado para mostrar.";
 
     // Validar los datos obtenidos de los selects
@@ -103,7 +105,7 @@
         $sqlBase = "SELECT * FROM " . $pais . "_" . $categoria . "_" . $publicaciones;
     } else {
         $sqlBase = "SELECT * FROM (" .
-        "SELECT * FROM " . $pais . "_" . $categoria . "_mas"
+        "SELECT * FROM " . $pais . "_" . $categoria . "_principal"
         . " UNION ALL "
         . "SELECT * FROM " . $pais . "_" . $categoria . "_menos"
         . ") as results";
@@ -170,7 +172,7 @@
         $sqlCount = "SELECT COUNT(*) FROM " . $pais . "_" . $categoria . "_" . $publicaciones;
     } else {
         $sqlCount = "SELECT COUNT(*) FROM ("
-            . "SELECT * FROM " . $pais . "_" . $categoria . "_mas"
+            . "SELECT * FROM " . $pais . "_" . $categoria . "_principal"
             . " UNION ALL "
             . "SELECT * FROM " . $pais . "_" . $categoria . "_menos"
             . ") as unionTable";

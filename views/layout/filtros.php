@@ -1,4 +1,4 @@
-<form id="search-form" action="?dir=cirujear" method="get">
+<form id="search-form" action="?dir=gamehunt" method="get">
     <div class="form-group mt-3">
         Pais:   <select name="pais" id="pais" class="filtros" required>
             <option value=""> -- Elige Pais -- </option>
@@ -8,11 +8,7 @@
     <div class="form-group mt-3">
         Categoría: <select name="categoria" id="categoria" class="filtros" required>
             <option value=""> -- Seleccionar -- </option>
-            <option value="filatelia" <?php echo (isset($_GET['categoria']) && $_GET['categoria'] === 'filatelia') ? 'selected' : ''; ?>>Filatelia</option>
-            <option value="juguetes" <?php echo (isset($_GET['categoria']) && $_GET['categoria'] === 'juguetes') ? 'selected' : ''; ?>>Juguetes</option>
-            <option value="monedas" <?php echo (isset($_GET['categoria']) && $_GET['categoria'] === 'monedas') ? 'selected' : ''; ?>>Monedas y billetes</option>
-            <option value="musica" <?php echo (isset($_GET['categoria']) && $_GET['categoria'] === 'musica') ? 'selected' : ''; ?>>Música</option>
-            <option value="videojuegos" <?php echo (isset($_GET['categoria']) && $_GET['categoria'] === 'videojuegos') ? 'selected' : ''; ?>>Video juegos</option>
+            <option value="videojuegos" <?php echo (isset($_GET['categoria']) && $_GET['categoria'] === 'videojuegos') ? 'selected' : ''; ?> selected>Video juegos</option>
         </select>
     </div>
         <?php if ($onGoingSearch === true) { ?>
@@ -29,11 +25,10 @@
             if ($pais && $categoria) {
                 //$sql = $pdo->prepare("SELECT DISTINCT all_item_categoria FROM " . $pais . "_" . $categoria . "_mas ORDER BY all_item_categoria ASC");
                 $sql = $pdo->prepare("
-                    (SELECT DISTINCT all_item_categoria FROM " . $pais . "_" . $categoria . "_mas)
-                    UNION
-                    (SELECT DISTINCT all_item_categoria FROM " . $pais . "_" . $categoria . "_menos)
-                    ORDER BY all_item_categoria ASC
-                    ");
+                SELECT DISTINCT all_item_categoria 
+                FROM " . $pais . "_" . $categoria . "_principal
+                ORDER BY all_item_categoria ASC
+            ");
                 $sql->execute();
                 $filtroCategorias = $sql->fetchAll(PDO::FETCH_COLUMN);
             }
@@ -62,13 +57,13 @@
                     <?php endforeach; ?>
                 </select>
             </div>
-            <div class="form-group mt-3">
+            <!-- <div class="form-group mt-3">
                 Publicaciones: <select name="publicaciones" class="filtros">
                     <option value="">Todas</option>
-                    <option value="destacados" <?php echo (isset($_GET['publicaciones']) && $_GET['publicaciones'] === 'destacados') ? 'selected' : ''; ?>>Destacadas</option>
-                    <option value="oportunidad" <?php echo (isset($_GET['publicaciones']) && $_GET['publicaciones'] === 'oportunidad') ? 'selected' : ''; ?>>Oportunidad limitada</option>
+                    <option value="destacados" <?//php echo (isset($_GET['publicaciones']) && $_GET['publicaciones'] === 'destacados') ? 'selected' : ''; ?>>+ Recientes</option>
+                    <option value="oportunidad" <?//php echo (isset($_GET['publicaciones']) && $_GET['publicaciones'] === 'oportunidad') ? 'selected' : ''; ?>>- Recienctes</option>
                 </select>
-            </div>
+            </div> -->
             <div class="d-flex justify-content-end mt-3">
                 <input type="submit" value="Resetear" id="resetearbtn">
             </div>

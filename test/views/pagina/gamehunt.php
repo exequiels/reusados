@@ -12,7 +12,7 @@
 <?php } else {
     $onGoingSearch = true;
     // Pagina default cuando las busquedas se salen de las validaciones
-    $pagina_buscador = $url_base . "?dir=cirujear";
+    $pagina_buscador = $url_base . "?dir=gamehunt";
     $noHayResultados = "No hay resultado para mostrar.";
 
     // Validar los datos obtenidos de los selects

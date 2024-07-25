@@ -23,7 +23,7 @@ if (!empty($_SESSION['user_id'])) {
         <td class="py-3 px-3"><a href="?dir=archivo">Archivo</a></td>
     </tr>
     <tr class="p-3 menu-item">
-        <td class="py-3 px-3"><a href="?dir=cirujear">Cirujear</a></td>
+        <td class="py-3 px-3"><a href="?dir=gamehunt">Gamehunt</a></td>
     </tr>
     <tr class="p-3 menu-item">
         <td class="py-3 px-3"><a href="?dir=rankings">Rankings</a></td>

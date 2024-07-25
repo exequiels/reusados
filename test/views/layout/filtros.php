@@ -1,4 +1,4 @@
-<form id="search-form" action="?dir=cirujear" method="get">
+<form id="search-form" action="?dir=gamehunt" method="get">
     <div class="form-group mt-3">
         Pais:   <select name="pais" id="pais" class="filtros" required>
             <option value=""> -- Elige Pais -- </option>

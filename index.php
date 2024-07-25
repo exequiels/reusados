@@ -4,10 +4,17 @@
 // error_reporting(E_ALL);
 session_start();
 require_once 'config/variables.php';
-// require_once 'config/connectar.php';
+require_once 'config/connectar.php';
 require_once 'models/user_model.php';
+require_once 'models/config_model.php';
 $userModel = new UserModel($pdo);
-
+$userRole = isset($_SESSION['user_id']) ? $userModel->getUserRole($_SESSION['user_id']) : '';
+$configModel = new ConfigModel($pdo);
+require_once 'utils/maintenance_functions.php';
+require_once 'utils/auth_functions.php';
+$maintenanceMode = $configModel->getMaintenanceMode();
+check_auth();
+check_maintenance();
 $universo = isset($_GET['dir']) ? $_GET['dir'] : 'inicio';
 $universo = filter_input(INPUT_GET, 'dir', FILTER_SANITIZE_SPECIAL_CHARS);
 require_once "validaciones/paginas_permitidas.php";
@@ -32,19 +39,21 @@ $seccionCentral = ob_get_clean();
         <!-- Main Content -->
         <div class="container mt-2 mt-sm-4">
             <div class="row">
-                <!-- Topbar -->
-                <div class="col-lg-12 col-md-11 col-sm-11 col-10 mx-auto">
-                    <div class="row">
-                        <?php require_once "views/layout/topbar.php"; ?>
+                <?php if (!is_maintenance_on($maintenanceMode)): ?>
+                    <!-- Topbar -->
+                    <div class="col-lg-12 col-md-11 col-sm-11 col-10 mx-auto">
+                        <div class="row">
+                            <?php require_once "views/layout/topbar.php"; ?>
+                        </div>
                     </div>
-                </div>
-                <!-- // Topbar -->
-                <!-- Menu -->
-                <div class="col-lg-2 col-sm-11 col-10 mx-auto">
-                    <div class="row">
-                        <?php require_once "views/layout/menu.php"; ?>
-                    </div>
-                </div>
+                    <!-- // Topbar -->
+                    <!-- Menu -->
+                        <div class="col-lg-2 col-sm-11 col-10 mx-auto">
+                            <div class="row">
+                                <?php require_once "views/layout/menu.php"; ?>
+                            </div>
+                        </div>
+                <?php endif; ?>
                 <!-- // Menu -->
                 <!-- Seccion central -->
                 <div class="col-lg-9 col-md-11 col-sm-11 col-10 mx-auto central-item">
