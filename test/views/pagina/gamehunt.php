@@ -84,7 +84,7 @@ if (!isset($_GET['pais']) || !isset($_GET['categoria'])) {
                     return (strlen($word) > $length) ? substr($word, 0, $length) . '..' : $word;
                 }, $words);
 
-                return htmlspecialchars(implode(' ', $truncatedWords));
+                return escape(implode(' ', $truncatedWords));
             }
     foreach ($allData as $row):
         // Armar url
@@ -105,32 +105,32 @@ if (!isset($_GET['pais']) || !isset($_GET['categoria'])) {
             <tr>
                 <!-- Contenido para escritorio (visible en pantallas de tamaño md y más grandes) -->
                 <td class="d-none d-md-table-cell p-3">
-                    <h6 class="mt-2"><?php echo htmlspecialchars($row['all_item_categoria']); ?></h6>
-                    <img src="<?php echo htmlspecialchars($row['all_thumbnail']); ?>" class="border border-estilo rounded-3" width="75" height="75" rel="noopener noreferrer nofollow" alt="<?php echo truncateText($row['all_titles'], 20); ?>">
+                    <h6 class="mt-2"><?php echo escape($row['all_item_categoria']); ?></h6>
+                    <img src="<?php echo escape($row['all_thumbnail']); ?>" class="border border-estilo rounded-3" width="75" height="75" rel="noopener noreferrer nofollow" alt="<?php echo truncateText($row['all_titles'], 20); ?>">
                 </td>
                 <td class="d-none d-md-table-cell p-3">
                     <h6><?php echo truncateText($row['all_titles'], 20); ?></h6>
-                    <h6 class="text-success fw-bold"><?php echo htmlspecialchars($row['all_prices']); ?></h6>
-                    <?php echo($row['all_cuotas'] == 0 ? '<h6 class="text-success fw-bold">($' . htmlspecialchars(bcdiv($row['all_prices'], $row['all_cuotas_cantidad'], 2)) . ' x ' . htmlspecialchars($row['all_cuotas_cantidad']) . ' sin interés)</h6>' : ''); ?>
+                    <h6 class="text-success fw-bold"><?php echo escape($row['all_prices']); ?></h6>
+                    <?php echo($row['all_cuotas'] == 0 ? '<h6 class="text-success fw-bold">($' . escape(bcdiv($row['all_prices'], $row['all_cuotas_cantidad'], 2)) . ' x ' . escape($row['all_cuotas_cantidad']) . ' sin interés)</h6>' : ''); ?>
                     <h6 class="text-success fw-bold"><?php echo ($row['all_shipping'] == 1) ? 'Envio gratis' : ''; ?></h6>
                     <h6><?php echo ($row['all_item_condition'] == 'used') ? 'Usado' : ''; ?></h6>
                     <div class="d-flex justify-content-end">
-                        <a href="enlace?dot=<?php echo urlencode($encryptedurl); ?>" data-pais="<?php echo htmlspecialchars($pais); ?>" data-categoria="<?php echo htmlspecialchars($categoria); ?>" data-subcategoria="<?php echo htmlspecialchars($row['all_item_categoria']); ?>" target="_blank">
+                        <a href="enlace?dot=<?php echo urlencode($encryptedurl); ?>" data-pais="<?php echo escape($pais); ?>" data-categoria="<?php echo escape($categoria); ?>" data-subcategoria="<?php echo escape($row['all_item_categoria']); ?>" target="_blank">
                             <img src="assets/imgs/cofre.png" width="55px" alt="Cofre" id="viajero">
                         </a>
                     </div>
                 </td>
                 <!-- Contenido para celular (visible en pantallas de tamaño sm y más pequeñas) -->
                 <td class="d-table-cell d-md-none p-3">
-                    <h6 class="mt-2"><?php echo htmlspecialchars($row['all_item_categoria']); ?></h6>
-                    <img src="<?php echo htmlspecialchars($row['all_thumbnail']); ?>" class="border border-estilo rounded-3" width="75" height="75" rel="noopener noreferrer nofollow" alt="<?php echo truncateText($row['all_titles'], 20); ?>">
+                    <h6 class="mt-2"><?php echo escape($row['all_item_categoria']); ?></h6>
+                    <img src="<?php echo escape($row['all_thumbnail']); ?>" class="border border-estilo rounded-3" width="75" height="75" rel="noopener noreferrer nofollow" alt="<?php echo truncateText($row['all_titles'], 20); ?>">
                     <h6 class="mt-2"><?php echo truncateText($row['all_titles'], 20); ?></h6>
-                    <h6 class="text-success fw-bold"><?php echo htmlspecialchars($row['all_prices']); ?></h6>
-                    <?php echo($row['all_cuotas'] == 0 ? '<h6 class="text-success fw-bold">($' . htmlspecialchars(bcdiv($row['all_prices'], $row['all_cuotas_cantidad'], 2)) . ' x ' . htmlspecialchars($row['all_cuotas_cantidad']) . ' sin interés)</h6>' : ''); ?>
+                    <h6 class="text-success fw-bold"><?php echo escape($row['all_prices']); ?></h6>
+                    <?php echo($row['all_cuotas'] == 0 ? '<h6 class="text-success fw-bold">($' . escape(bcdiv($row['all_prices'], $row['all_cuotas_cantidad'], 2)) . ' x ' . escape($row['all_cuotas_cantidad']) . ' sin interés)</h6>' : ''); ?>
                     <h6 class="text-success fw-bold"><?php echo ($row['all_shipping'] == 1) ? 'Envio gratis' : ''; ?></h6>
                     <h6><?php echo ($row['all_item_condition'] == 'used') ? 'Usado' : ''; ?></h6>
                     <div class="d-flex justify-content-end">
-                        <a href="enlace?dot=<?php echo urlencode($encryptedurl); ?>" data-pais="<?php echo htmlspecialchars($pais); ?>" data-categoria="<?php echo htmlspecialchars($categoria); ?>" data-subcategoria="<?php echo htmlspecialchars($row['all_item_categoria']); ?>" target="_blank">
+                        <a href="enlace?dot=<?php echo urlencode($encryptedurl); ?>" data-pais="<?php echo escape($pais); ?>" data-categoria="<?php echo escape($categoria); ?>" data-subcategoria="<?php echo escape($row['all_item_categoria']); ?>" target="_blank">
                             <img src="assets/imgs/cofre.png" width="55px" alt="Cofre" id="viajero">
                         </a>
                     </div>

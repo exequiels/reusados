@@ -21,13 +21,16 @@ $allUsers = $userModel->getAllUsers();
             <?php foreach ($allUsers as $user) : ?>
                 <tr>
                     <td class="p-3">
-                        <?= htmlspecialchars($user['username']); ?>
+                        <?= escape($user['username']); ?>
                     </td>
                     <td class="p-3">
-                        <?= htmlspecialchars($user['rol']); ?>
+                        <?= escape($user['rol']); ?>
                     </td>
                     <td class="p-3">
-                        <?= htmlspecialchars($user['created_at']); ?>
+                        <?= escape($user['created_at']); ?>
+                    </td>
+                    <td class="p-3">
+                        <?= escape($user['username']); ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

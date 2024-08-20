@@ -27,8 +27,8 @@
 <!-- Gamehunt -->
 <?php if ($universo === 'gamehunt'): ?>
     <script type="text/javascript">
-        const baseUrl = "<?php echo htmlspecialchars($url_base, ENT_QUOTES, 'UTF-8'); ?>";
-        const desvioUrl = "<?php echo htmlspecialchars($desvioUrl, ENT_QUOTES, 'UTF-8'); ?>";
+        const baseUrl = "<?php echo escape($url_base, ENT_QUOTES, 'UTF-8'); ?>";
+        const desvioUrl = "<?php echo escape($desvioUrl, ENT_QUOTES, 'UTF-8'); ?>";
     </script>
     <!-- Armar url -->
     <script src="assets/js/buscador_url.js"></script>
@@ -40,8 +40,8 @@
 <!-- Tendencias -->
 <?php if ($universo === 'rankings'): ?>
     <script type="text/javascript">
-        const baseUrl = "<?php echo htmlspecialchars($url_base, ENT_QUOTES, 'UTF-8'); ?>";
-        const desvioUrl = "<?php echo htmlspecialchars($desvioUrl, ENT_QUOTES, 'UTF-8'); ?>";
+        const baseUrl = "<?php echo escape($url_base, ENT_QUOTES, 'UTF-8'); ?>";
+        const desvioUrl = "<?php echo escape($desvioUrl, ENT_QUOTES, 'UTF-8'); ?>";
     </script>
     <!-- Armar url -->
     <script src="assets/js/tendencias_url.js"></script>

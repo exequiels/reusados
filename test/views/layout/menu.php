@@ -15,9 +15,9 @@
         <tr class="p-3 menu-item">
             <td class="py-3 px-3"><a href="?dir=archivo">Archivo</a></td>
         </tr>
-        <!-- <tr class="p-3 menu-item">
+        <tr class="p-3 menu-item">
             <td class="py-3 px-3"><a href="?dir=rankings">Rankings</a></td>
-        </tr> -->
+        </tr>
         <tr class="p-3 menu-item">
             <td class="py-3 px-3"><a href="?dir=gamehunt">Gamehunt</a></td>
         </tr>

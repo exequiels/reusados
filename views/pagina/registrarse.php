@@ -116,7 +116,7 @@ $displayedAnswer = rand(0, 18);
                 <div class="form-group mt-3">
                     <label for="usuario">Usuario:</label>
                     <span class="text-body-tertiary">(mínimo 3 caracteres y máximo 30)</span>
-                    <input type="text" id="username" name="username" placeholder="Nickname en reUsados" minlength="3" maxlength="30" class="w-100" value="<?= isset($_POST['username']) ? htmlspecialchars($_POST['username']) : '' ?>" required>
+                    <input type="text" id="username" name="username" placeholder="Nickname en reUsados" minlength="3" maxlength="30" class="w-100" value="<?= isset($_POST['username']) ? escape($_POST['username']) : '' ?>" required>
                     <span class="validacion text-danger" style="display: none;">Algo no cuadra.</span>
                     <?php if (!empty($usernameErrors)) { ?>
                         <?php foreach ($usernameErrors as $userErrors) { ?>
@@ -127,7 +127,7 @@ $displayedAnswer = rand(0, 18);
                 <div class="form-group mt-3">
                     <label for="nombre">Nombre:</label>
                     <span class="text-body-tertiary fst-normal">(mínimo 3 caracteres y máximo 30)</span>
-                    <input type="text" id="fullname" name="fullname" placeholder="Tu nombre" minlength="3" maxlength="30" class="w-100" value="<?= isset($_POST['fullname']) ? htmlspecialchars($_POST['fullname']) : '' ?>" required>
+                    <input type="text" id="fullname" name="fullname" placeholder="Tu nombre" minlength="3" maxlength="30" class="w-100" value="<?= isset($_POST['fullname']) ? escape($_POST['fullname']) : '' ?>" required>
                     <span class="validacion text-danger" style="display: none;">Algo no cuadra.</span>
                     <?php if (!empty($fullnameError)) { ?>
                         <span class="validacion text-danger"><?= $fullnameError ?></span>
@@ -136,7 +136,7 @@ $displayedAnswer = rand(0, 18);
                 <div class="form-group mt-3">
                     <label for="email">Correo electrónico:</label>
                     <span class="text-body-tertiary">(un email válido)</span>
-                    <input type="email" id="email" name="email" placeholder="Email" minlength="8" maxlength="50" class="w-100" value="<?= isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '' ?>" required>
+                    <input type="email" id="email" name="email" placeholder="Email" minlength="8" maxlength="50" class="w-100" value="<?= isset($_POST['email']) ? escape($_POST['email']) : '' ?>" required>
                     <span class="validacion text-danger" style="display: none;">No parece válido.</span>
                     <?php if (!empty($emailErrors)) { ?>
                         <?php foreach ($emailErrors as $mailErrors) { ?>

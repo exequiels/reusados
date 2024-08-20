@@ -2,9 +2,9 @@
 $mensaje_confirmacion = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = htmlspecialchars($_POST["nombre"]);
-    $email = htmlspecialchars($_POST["email"]);
-    $mensaje = htmlspecialchars($_POST["mensaje"]);
+    $nombre = escape($_POST["nombre"]);
+    $email = escape($_POST["email"]);
+    $mensaje = escape($_POST["mensaje"]);
 
     $asunto = "Mensaje de contacto de $nombre";
     $contenido = "Nombre: $nombre\n";

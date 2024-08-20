@@ -93,8 +93,8 @@ try {
                         <tbody>
                             <?php foreach ($dataSubcategorias as $entry): ?>
                                 <tr>
-                                    <td><?php echo htmlspecialchars($entry['subcategoria']); ?></td>
-                                    <td><?php echo htmlspecialchars($entry['total_clicks']); ?></td>
+                                    <td><?php echo escape($entry['subcategoria']); ?></td>
+                                    <td><?php echo escape($entry['total_clicks']); ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
