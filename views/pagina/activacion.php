@@ -1,5 +1,5 @@
 <?php
-require_once 'models/user_model.php';
+require_once 'models/UserModel.php';
 
 $userModel = new UserModel($pdo);
 
