@@ -19,7 +19,7 @@ if (isset($_GET['token'])) {
 ?>
 <table class="table table-sm table-bordered border-estilo">
     <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
-    <tr class="p-3"> 
+    <tr> 
         <td class="p-3" colspan="2">
             <div class="form-group mt-3">
                 <?= $status ?>

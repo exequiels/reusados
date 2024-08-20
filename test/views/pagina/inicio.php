@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 ?>
 <table class="table table-sm table-bordered border-estilo mb-1">
     <?//php include_once "views/layout/encabezado_de_tabla.php"; ?>
-    <tr class="p-3"> 
+    <tr> 
         <td class="text-white" colspan="2">            
             <article>
                 <div id="screen">
@@ -38,7 +38,7 @@ if (!isset($_SESSION['user_id'])) {
             </div>
         </td>
     </tr>
-    <!--<tr class="p-3">
+    <!--<tr>
         <td class="py-3 px-3" colspan="3"><h6 class="d-flex justify-content-between align-items-center">
             <span>Noticias</span>
         </td>

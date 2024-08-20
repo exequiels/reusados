@@ -12,20 +12,20 @@
             </h6>
         </th>
     </tr>
-    <tr class="p-3 menu-item">
-        <td class="py-3 px-3"><a href="?dir=archivo">Archivo</a></td>
-    </tr>
-    <?php if (is_loged_user($userRole)): ?>
         <tr class="p-3 menu-item">
-            <td class="py-3 px-3"><a href="?dir=rankings">Rankings</a></td>
+            <td class="py-3 px-3"><a href="?dir=archivo">Archivo</a></td>
         </tr>
+        <!-- <tr class="p-3 menu-item">
+            <td class="py-3 px-3"><a href="?dir=rankings">Rankings</a></td>
+        </tr> -->
         <tr class="p-3 menu-item">
             <td class="py-3 px-3"><a href="?dir=gamehunt">Gamehunt</a></td>
         </tr>
-        <tr class="p-3 menu-item">
-            <td class="py-3 px-3"><a href="?dir=usuarios">reUsaders</a></td>
-        </tr>
-    <?php endif; ?>
+        <?php if (is_admin($userRole)): ?>
+            <tr class="p-3 menu-item">
+                <td class="py-3 px-3"><a href="?dir=usuarios">Usuarios</a></td>
+            </tr>
+        <?php endif; ?>
 </table>
 <!-- <//?php if (!empty($_SESSION['user_id'])): ?>
     <//?php if ($userRole == 'usuario' || $userRole == 'admin'): ?>

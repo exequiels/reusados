@@ -3,7 +3,7 @@ check_auth(['usuario', 'admin']);
 ?>
 <table class="table table-sm table-bordered border-estilo">
     <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
-    <tr class="p-3"> 
+    <tr> 
         <td class="p-3" colspan="2">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
@@ -85,7 +85,7 @@ try {
                 <table class="table table-sm table-bordered border-estilo mt-4">
                     <?php if (!empty($dataSubcategorias)): ?>    
                         <thead>
-                            <tr class="p-3">
+                            <tr>
                                 <th>Subcategoría</th>
                                 <th>Búsquedas</th>
                             </tr>
@@ -99,7 +99,7 @@ try {
                             <?php endforeach; ?>
                         </tbody>
                     <?php else: ?>
-                        <tr class="p-3"> 
+                        <tr> 
                             <td class="p-3" colspan="2">
                                 <article>
                                     <p><img src="assets/imgs/manual.png" width="150px" height="150px" class="shadow rounded" alt="Libro antiguo" id="floatleft"></p>

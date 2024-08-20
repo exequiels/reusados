@@ -1,5 +1,5 @@
-<tr class="p-3">
-    <th class="py-3 px-3" colspan="3"><h6 class="d-flex justify-content-between align-items-center">
+<tr>
+    <th class="py-3 px-3" colspan="7"><h6 class="d-flex justify-content-between align-items-center">
         <span>
             <?php
                 $dir = isset($_GET['dir']) ? $_GET['dir'] : '';

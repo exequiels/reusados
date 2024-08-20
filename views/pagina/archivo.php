@@ -1,6 +1,6 @@
 <table class="table table-sm table-bordered border-estilo">
     <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
-    <tr class="p-3"> 
+    <tr> 
         <td class="p-3" colspan="2">
             <div class="form-group mt-3">
             Que buscas?
@@ -21,17 +21,17 @@
             </div>
         </td>
     </tr>
-    <tr class="p-3"> 
+    <tr> 
         <td class="p-3 text-center" colspan="2">
             <img src="assets/imgs/placeholder450x350.png" class="card-img-top img-fluid" alt="Imagen del juego" style="max-width: 400px; max-height: 400px; object-fit: cover;">
         </td>
     </tr>
-    <tr class="p-3"> 
+    <tr> 
         <td class="p-3" colspan="2">
             <h6>Título del Juego</h6>
         </td>
     </tr>
-    <tr class="p-3"> 
+    <tr> 
         <td class="p-3" colspan="2">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>Año de lanzamiento:</strong> 2023</li>

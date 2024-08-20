@@ -1,5 +1,5 @@
 <table class="table table-sm table-bordered border-estilo">
-    <tr class="p-3">
+    <tr>
         <th class="py-3 px-3" colspan="3"><h6 class="d-flex justify-content-between align-items-center">
             <span>Políticas de Privacidad</span>
             <button id="seccionCentral" type="button" title="Cerrar" class="btn border-0">
@@ -9,7 +9,7 @@
             </button>
         </th>
     </tr>
-    <tr class="p-3"> 
+    <tr> 
         <td class="p-3" colspan="2">
             <div class="form-group mt-3">
                 <article>

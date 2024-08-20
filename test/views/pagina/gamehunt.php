@@ -1,9 +1,15 @@
-<?php if (!isset($_GET['pais']) || !isset($_GET['categoria'])) {
+<?php
+check_auth(['usuario', 'admin']);
+
+// Definir variables con valores predeterminados
+$onGoingSearch = false;
+
+if (!isset($_GET['pais']) || !isset($_GET['categoria'])) {
     $onGoingSearch = false;
     ?>
     <table class="table table-sm table-bordered border-estilo">
         <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
-        <tr class="p-3">
+        <tr>
             <td class="p-3" colspan="2">
                 <?php require_once "views/layout/filtros.php"; ?>
             </td>
@@ -32,6 +38,25 @@
     $subcategoria = isset($_GET['subcategoria']) ? $_GET['subcategoria'] : '';
     $publicaciones = isset($_GET['publicaciones']) ? $_GET['publicaciones'] : '';
 
+    require_once './models/VideGameModel.php';
+    $videoGameModel = new VideoGameModel($pdo);
+
+    $filters = [
+        'palabra' => $palabra,
+        'subcategoria' => $subcategoria,
+        'precio_min' => $precio_min,
+        'precio_max' => $precio_max,
+        'orden' => $orden
+    ];
+
+    $page = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+    $perPage = 15;
+
+    $totalGames = $videoGameModel->countVideoGames($filters);
+    $totalPages = ceil($totalGames / $perPage);
+
+    $allData = $videoGameModel->getAllVideoGames($filters, $page, $perPage);
+
     // Hacer el chequeo de datos
     if (!in_array($pais, $paises) || !in_array($categoria, $categorias) || ($orden && !in_array($orden, $ordenes)) || ($subcategoria && !in_array($subcategoria, $subcategorias))) {
         // Si los datos no pasan el filtro de validacion
@@ -43,196 +68,10 @@
     require_once "utils/funciones_paises_y_categorias.php";
     $pais = convertirPais($pais);
     $categoria = convertirCategoria($categoria);
-
-    // Cuando recibo filtro publicacion
-    switch ($publicaciones) {
-        case "destacados":
-            $publicaciones = "mas";
-            break;
-        case "oportunidad":
-            $publicaciones = "menos";
-            break;
-        default:
-            $publicaciones =  "";
-            break;
-    }
-
-    // Iniciamos la variable de paginas totales
-    $total_pages = 1;
-
-    // Cuando recibo un orden
-    switch ($orden) {
-        case "precio_asc":
-            $orderBy = "ORDER BY CAST(all_prices AS DECIMAL) ASC";
-            break;
-        case "precio_desc":
-            $orderBy = "ORDER BY CAST(all_prices AS DECIMAL) DESC";
-            break;
-        case "alfabetico":
-            $orderBy = "ORDER BY all_titles ASC";
-            break;
-        default:
-            $orderBy = "";
-            break;
-    }
-
-    // Cuando recibimos rango de precios
-    $range = "";
-    if (isset($_GET['precio_min']) && isset($_GET['precio_max'])) {
-        $range = "AND CAST(all_prices AS DECIMAL) BETWEEN :precio_min AND :precio_max";
-    }
-
-    // Obtener el número de página actual de la URL
-    if (isset($_GET['pagina'])) {
-        if (!ctype_digit($_GET['pagina']) || intval($_GET['pagina']) <= 0) {
-            // Si la pagina no corresponde a un int > a 0
-            //exit;
-        }
-    }
-
-    $manual_page = isset($_GET['pagina']) && is_numeric($_GET['pagina']) ? intval($_GET['pagina']) : 1;
-    $items_per_page = 12;
-
-    // Calculate the offset
-    $offset = ($manual_page - 1) * $items_per_page;
-
-    // Construct the base SQL query
-    if($publicaciones == "mas") {
-        $sqlBase = "SELECT * FROM " . $pais . "_" . $categoria . "_" . $publicaciones;
-    } elseif($publicaciones == "menos") {
-        $sqlBase = "SELECT * FROM " . $pais . "_" . $categoria . "_" . $publicaciones;
-    } else {
-        $sqlBase = "SELECT * FROM (" .
-        "SELECT * FROM " . $pais . "_" . $categoria . "_mas"
-        . " UNION ALL "
-        . "SELECT * FROM " . $pais . "_" . $categoria . "_menos"
-        . ") as results";
-    }
-
-    $sqlConditions = []; // Placeholder for WHERE conditions
-    $sqlValues = []; // Placeholder for parameter values
-
-    if (!empty($subcategoria)) {
-        $sqlConditions[] = "all_item_categoria = :subcategoria";
-        $sqlValues[':subcategoria'] = $subcategoria;
-    }
-
-    if (!empty($palabra)) {
-        $palabraMinusculas = strtolower($palabra);
-        $sqlConditions[] = "LOWER(all_titles) LIKE :palabra";
-        $sqlValues[':palabra'] = "%$palabraMinusculas%";
-    }
-
-    // Add range condition if applicable
-    if ($range) {
-        $sqlConditions[] = "CAST(all_prices AS DECIMAL) BETWEEN :precio_min AND :precio_max";
-        $sqlValues[':precio_min'] = $precio_min;
-        $sqlValues[':precio_max'] = $precio_max;
-    }
-
-    // If there are conditions, add WHERE clause
-    if (!empty($sqlConditions)) {
-        $sqlBase .= " WHERE " . implode(" AND ", $sqlConditions);
-    }
-
-    // Add ORDER BY clause if applicable
-    if ($orderBy) {
-        $sqlBase .= " $orderBy";
-    }
-
-    // Add LIMIT clause for pagination
-    $sqlBase .= " LIMIT :offset, :items_per_page";
-
-    // Prepare and execute the main query
-    $stmt = $pdo->prepare($sqlBase);
-
-    // Bind parameters
-    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-    $stmt->bindValue(':items_per_page', $items_per_page, PDO::PARAM_INT);
-
-    // Bind other parameters if applicable
-    foreach ($sqlValues as $param => $value) {
-        $stmt->bindValue($param, $value);
-    }
-
-    // Execute the main query
-    $stmt->execute();
-    $allData = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-    // Construct the count SQL query
-    //$sqlCount = "SELECT COUNT(*) FROM " . $pais . "_" . $categoria;
-    $countConditions = []; // Placeholder for COUNT WHERE conditions
-
-    if ($publicaciones == "mas") {
-        $sqlCount = "SELECT COUNT(*) FROM " . $pais . "_" . $categoria . "_" . $publicaciones;
-    } elseif ($publicaciones == "menos") {
-        $sqlCount = "SELECT COUNT(*) FROM " . $pais . "_" . $categoria . "_" . $publicaciones;
-    } else {
-        $sqlCount = "SELECT COUNT(*) FROM ("
-            . "SELECT * FROM " . $pais . "_" . $categoria . "_mas"
-            . " UNION ALL "
-            . "SELECT * FROM " . $pais . "_" . $categoria . "_menos"
-            . ") as unionTable";
-    }
-
-    //if (!empty($publicaciones)) {
-    //$sqlCount .= "_" . $publicaciones;
-    //}
-
-    if (!empty($subcategoria)) {
-        $countConditions[] = "all_item_categoria = :subcategoria";
-        $sqlValues[':subcategoria'] = $subcategoria;
-    }
-
-    if (!empty($palabra)) {
-        $palabraMinusculas = strtolower($palabra);
-        $countConditions[] = "LOWER(all_titles) LIKE :palabra";
-        $sqlValues[':palabra'] = "%$palabraMinusculas%";
-    }
-    //if (!empty($palabra)) {
-    //  $countConditions[] = "all_titles LIKE :palabra";
-    //$sqlValues[':palabra'] = "%$palabra%";
-    //}
-
-    // Add range condition if applicable
-    if ($range) {
-        $countConditions[] = "CAST(all_prices AS DECIMAL) BETWEEN :precio_min AND :precio_max";
-        $sqlValues[':precio_min'] = $precio_min;
-        $sqlValues[':precio_max'] = $precio_max;
-    }
-
-    // If there are conditions, add WHERE clause
-    if (!empty($countConditions)) {
-        $sqlCount .= " WHERE " . implode(" AND ", $countConditions);
-    }
-
-    // Prepare and execute the count query
-    $stmtCount = $pdo->prepare($sqlCount);
-
-    // Bind parameters
-    foreach ($sqlValues as $param => $value) {
-        $stmtCount->bindValue($param, $value);
-    }
-
-    // Execute the count query
-    $stmtCount->execute();
-    $totalRecords = $stmtCount->fetchColumn();
-    //echo "Total Records: $totalRecords";
-
-    // Calcular total de paginas
-    $total_pages = ceil($totalRecords / $items_per_page);
-
-
-    // Calcular si la pagina en el navegador es > al total de paginas
-    if ($manual_page > $total_pages) {
-        // Si la pagina excede a los resultados
-        //exit;
-    }
     ?>
     <table class="table table-sm table-bordered border-estilo">
         <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
-        <tr class="p-3">
+        <tr>
             <td class="p-3" colspan="2">
                 <?php require_once "views/layout/filtros.php"; ?>
             </td>
@@ -263,7 +102,7 @@
         // URL-safe encoding
         $enlaceurl = urlencode($encryptedurl);
         ?>
-            <tr class="p-3">
+            <tr>
                 <!-- Contenido para escritorio (visible en pantallas de tamaño md y más grandes) -->
                 <td class="d-none d-md-table-cell p-3">
                     <h6 class="mt-2"><?php echo htmlspecialchars($row['all_item_categoria']); ?></h6>
@@ -299,17 +138,17 @@
             </tr>
         <?php endforeach; ?>
         <?php if (empty($allData)): ?>
-        <tr class="p-3"> 
-            <td class="p-3" colspan="2">
-                <article>
-                    <p><img src="imgs/manual.png" width="150px" height="150px" class="shadow rounded" alt="Libro antiguo" id="floatleft"></p>
-                    <p><?php echo $noHayResultados;?></p>
-                </article>
-            </td>
-        </tr>
-    <?php endif; ?>
+            <tr> 
+                <td class="p-3" colspan="2">
+                    <article>
+                        <p><img src="./assets/imgs/manual.png" width="150px" height="150px" class="shadow rounded" alt="Libro antiguo" id="floatleft"></p>
+                        <p><?php echo $noHayResultados;?></p>
+                    </article>
+                </td>
+            </tr>
+        <?php endif; ?>
     </table>
     <div class="d-flex justify-content-center">
-        <?php require_once "views/layout/paginacion.php"; ?>
+        <?php require_once "./config/paginacion.php"; ?>
     </div>
 <?php } ?>

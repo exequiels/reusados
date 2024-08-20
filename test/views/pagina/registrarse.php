@@ -105,7 +105,7 @@ $displayedAnswer = rand(0, 18);
         var captchaAnswer = <?= $captchaAnswer ?>;
     </script>
 
-    <tr class="p-3"> 
+    <tr> 
         <td class="p-3" colspan="2">
         <?php if (!empty($registrado)): ?>
             <div class="form-group mt-3">

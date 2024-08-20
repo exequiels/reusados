@@ -1,4 +1,4 @@
-<form id="tendencias-form" action="?dir=tendencias" method="get">
+<form id="tendencias-form" action="?dir=rankings" method="get">
     <div class="form-group mt-3">
         Pais:   <select name="pais" class="filtros" required>
             <option value=""> -- Elige Pais -- </option>

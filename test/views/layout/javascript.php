@@ -38,7 +38,7 @@
 <!-- // Gamehunt -->
 
 <!-- Tendencias -->
-<?php if ($universo === 'tendencias'): ?>
+<?php if ($universo === 'rankings'): ?>
     <script type="text/javascript">
         const baseUrl = "<?php echo htmlspecialchars($url_base, ENT_QUOTES, 'UTF-8'); ?>";
         const desvioUrl = "<?php echo htmlspecialchars($desvioUrl, ENT_QUOTES, 'UTF-8'); ?>";

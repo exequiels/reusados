@@ -5,12 +5,12 @@ $allUsers = $userModel->getAllUsers();
 <table class="table table-sm table-bordered border-estilo table-striped">
         <thead>
             <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
-            <tr class="p-3">
+            <tr>
                 <td class="p-3" colspan="3">
                 <input class="w-100" type="text" id="myInput" onkeyup="myFunction()" placeholder="Filtrar usuarios por nickname, rol, etc ..">
                 </td>
             </tr>
-            <tr class="p-3">
+            <tr>
                 <th class="p-3">Nickname</th>
                 <th class="p-3">Rol</th>
                 <th class="p-3">Creado</th>
@@ -19,7 +19,7 @@ $allUsers = $userModel->getAllUsers();
         <tbody id="myTable">
         <?php if (!empty($allUsers)) : ?>
             <?php foreach ($allUsers as $user) : ?>
-                <tr class="p-3">
+                <tr>
                     <td class="p-3">
                         <?= htmlspecialchars($user['username']); ?>
                     </td>
@@ -32,7 +32,7 @@ $allUsers = $userModel->getAllUsers();
                 </tr>
             <?php endforeach; ?>
         <?php else : ?>
-            <tr class="p-3">
+            <tr>
                 <td class="p-3" colspan="6">
                     No hay usuarios..
                 </td>

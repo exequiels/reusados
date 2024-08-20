@@ -18,10 +18,16 @@ footer {
   margin: 10px 1.5% 24px 1.5%;
   background-color: #2a4f6e;
 }
+
+.bg-insidetabs {
+  background-color: #f5f5f5 !important;
+}
+
 section {
   float: left;
   width: 30%;
 }
+
 footer {
   clear: both;
   margin-bottom: 0;
@@ -152,6 +158,13 @@ footer {
   height: 30px;
   padding: 0 !important;
   cursor: pointer;
+}
+
+/* Errores */
+.error-text {
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
 }
 
 .week.future {

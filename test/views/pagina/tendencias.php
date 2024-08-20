@@ -3,7 +3,7 @@
     ?>
     <table class="table table-sm table-bordered border-estilo">
         <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
-        <tr class="p-3">
+        <tr>
             <td class="p-3" colspan="2">
                 <?php require_once "views/layout/filtros_tendencias.php"; ?>
             </td>
@@ -48,13 +48,13 @@
     ?>
     <table class="table table-sm table-bordered border-estilo">
         <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
-        <tr class="p-3">
+        <tr>
             <td class="p-3" colspan="2">
                 <?php require_once "views/layout/filtros_tendencias.php"; ?>
             </td>
         </tr>
         <?php if (!empty($data)): ?>    
-        <tr class="p-3">
+        <tr>
             <td class="p-3" colspan="2">
                 <div class="p-2 flex-item">
                     Historial de interés reUsados:
@@ -169,7 +169,7 @@
                 </td>
             </tr>   
         <?php else: ?>
-            <tr class="p-3"> 
+            <tr> 
                 <td class="p-3" colspan="2">
                     <article>
                         <p><img src="imgs/manual.png" width="150px" height="150px" class="shadow rounded" alt="Libro antiguo" id="floatleft"></p>

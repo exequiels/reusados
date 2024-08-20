@@ -3,7 +3,7 @@
     ?>
     <table class="table table-sm table-bordered border-estilo">
         <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
-        <tr class="p-3">
+        <tr>
             <td class="p-3" colspan="2">
                 <?php require_once "views/layout/filtros.php"; ?>
             </td>
@@ -232,7 +232,7 @@
     ?>
     <table class="table table-sm table-bordered border-estilo">
         <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
-        <tr class="p-3">
+        <tr>
             <td class="p-3" colspan="2">
                 <?php require_once "views/layout/filtros.php"; ?>
             </td>
@@ -263,7 +263,7 @@
         // URL-safe encoding
         $enlaceurl = urlencode($encryptedurl);
         ?>
-            <tr class="p-3">
+            <tr>
                 <!-- Contenido para escritorio (visible en pantallas de tamaño md y más grandes) -->
                 <td class="d-none d-md-table-cell p-3">
                     <h6 class="mt-2"><?php echo htmlspecialchars($row['all_item_categoria']); ?></h6>
@@ -299,7 +299,7 @@
             </tr>
         <?php endforeach; ?>
         <?php if (empty($allData)): ?>
-        <tr class="p-3"> 
+        <tr> 
             <td class="p-3" colspan="2">
                 <article>
                     <p><img src="imgs/manual.png" width="150px" height="150px" class="shadow rounded" alt="Libro antiguo" id="floatleft"></p>
