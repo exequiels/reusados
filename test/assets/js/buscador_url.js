@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    const url = baseUrl + "?dir=buscador";
+    const url = baseUrl + "?dir=gamehunt";
 
     if (params.length > 0) {
       const newUrl = url + "&" + params.join("&");
