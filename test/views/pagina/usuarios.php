@@ -6,7 +6,7 @@ $allUsers = $userModel->getAllUsers();
         <thead>
             <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
             <tr>
-                <td class="p-3" colspan="3">
+                <td class="p-3" colspan="4">
                 <input class="w-100" type="text" id="myInput" onkeyup="myFunction()" placeholder="Filtrar usuarios por nickname, rol, etc ..">
                 </td>
             </tr>
@@ -14,6 +14,7 @@ $allUsers = $userModel->getAllUsers();
                 <th class="p-3">Nickname</th>
                 <th class="p-3">Rol</th>
                 <th class="p-3">Creado</th>
+                <th class="p-3">Status</th>
             </tr>
         </thead>
         <tbody id="myTable">
@@ -30,7 +31,7 @@ $allUsers = $userModel->getAllUsers();
                         <?= escape($user['created_at']); ?>
                     </td>
                     <td class="p-3">
-                        <?= escape($user['username']); ?>
+                        <?= escape($user['status']); ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
