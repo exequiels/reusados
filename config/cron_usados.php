@@ -2,8 +2,8 @@
 
 error_reporting(E_ALL);
 
-require_once './home/u764883179/public_html/config/connectar.php';
-require_once './home/u764883179/public_html/models/TokenModel.php';
+require_once '/home/u764883179/public_html/config/connectar.php';
+require_once '/home/u764883179/public_html/models/TokenModel.php';
 
 $tokenModel = new TokenModel($pdo);
 $tokenData = $tokenModel->getToken();
@@ -178,3 +178,7 @@ $searchTerms = [
 $totalResultsDatos = extraerDatos($pdo, 'MLA', $ACCESS_TOKEN, $searchTerms);
 echo "<p>Listo video juegos destacados.</p>";
 echo "<hr />";
+
+// Configurar el archivo de log
+ini_set('log_errors', 1);
+ini_set('error_log', '/home/u764883179/public_html/config/cron-log.log');
