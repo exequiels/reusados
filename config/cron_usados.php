@@ -1,8 +1,9 @@
 <?php
 
 error_reporting(E_ALL);
-require_once 'connectar.php';
-require_once '../models/TokenModel.php';
+
+require_once './home/u764883179/public_html/config/connectar.php';
+require_once './home/u764883179/public_html/models/TokenModel.php';
 
 $tokenModel = new TokenModel($pdo);
 $tokenData = $tokenModel->getToken();
