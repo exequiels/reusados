@@ -11,16 +11,7 @@ $errorsPerPage = 10;
 $totalErrors = $errorLogModel->countErrors();
 $totalPages = ceil($totalErrors / $errorsPerPage);
 
-// $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-// $page = max($page, 1);
-// $page = min($page, $totalPages);
-// $offset = ($page - 1) * $errorsPerPage;
-
-// $errors = $errorLogModel->getAllErrors($errorsPerPage, $offset);
 $errors = $errorLogModel->getAllErrors();
-// $range = 2;
-// $startPage = max(1, $page - $range);
-// $endPage = min($totalPages, $page + $range);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['maintenance'])) {
     $newMode = $_POST['maintenance'];
@@ -117,7 +108,7 @@ foreach ($errors as $error):
     </tr>
     <tr>
         <td class="p-3 bg-insidetabs">
-            Maintenance mode
+            Cron Jobs
         </td>
     </tr>
     <tr> 

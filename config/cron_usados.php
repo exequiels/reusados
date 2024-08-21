@@ -49,6 +49,14 @@ $tokenModel->upsertToken($access_token, $refresh_token, $expires_in);
 $tokenData = $tokenModel->getToken();
 $ACCESS_TOKEN = $tokenData[0]['access_token'];
 
+if ($pdo) {
+    $updateStmt = $pdo->prepare("UPDATE mla_consolasyvideojuegos_principal SET status = 0 WHERE status = 1");
+    if (!$updateStmt->execute()) {
+        echo "Error al actualizar status: " . implode(" ", $updateStmt->errorInfo());
+        exit;
+    }
+}
+
 function extraerDatos($pdo, $SITE_ID, $ACCESS_TOKEN, $searchTerms)
 {
     foreach ($searchTerms as $category => $terms) {
