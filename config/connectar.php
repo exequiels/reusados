@@ -1,12 +1,9 @@
 <?php
 
 // Charset=utf8mb4 explicit charset, for security purposes
-// $dbLink = getenv('DB_LINK');
-// $dbUser = getenv('DB_USER');
-// $dbPW = getenv('DB_PW');
-$dbLink = "mysql:host=185.211.7.154;dbname=u764883179_reusados;charset=utf8mb4";
-$dbUser = "u764883179_exequiel";
-$dbPW = "WQ.V7/Ln0j6E";
+$dbLink = getenv('DB_LINK');
+$dbUser = getenv('DB_USER');
+$dbPW = getenv('DB_PW');
 
 // Security options
 $options = [
