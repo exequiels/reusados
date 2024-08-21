@@ -115,6 +115,21 @@ foreach ($errors as $error):
             </div>                        
         </td>
     </tr>
+    <tr>
+        <td class="p-3 bg-insidetabs">
+            Maintenance mode
+        </td>
+    </tr>
+    <tr> 
+        <td class="p-3">
+            <form action="config/cron_usados.php" method="post">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>Probar cron-job</div>
+                    <button type="submit">Ejecutar Script</button>
+                </div>
+            </form>
+        </td>
+    </tr>
 </table>
 
 <!-- El modal -->
