@@ -13,6 +13,7 @@ $totalPages = ceil($totalErrors / $errorsPerPage);
 
 $errors = $errorLogModel->getAllErrors();
 
+require_once './models/VideGameModel.php';
 $videoGameModel = new VideoGameModel($pdo);
 $ultimaInsercion = $videoGameModel->getLastInsertion();
 
