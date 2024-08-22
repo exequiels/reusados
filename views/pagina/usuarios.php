@@ -32,7 +32,7 @@ sort($allUsers);
                         <?= escape(nivelDeUsuario($user['rol'])); ?>
                     </td>
                     <td class="p-3">
-                        <?= convertToLocalTime(escape($user['created_at'])); ?>
+                        <?= escape(convertToLocalTime($user['created_at'])); ?>
                     </td>
                     <td class="p-3">
                         <?= escape($user['status']) == 1 ? 'activada' : 'inactivada'; ?>

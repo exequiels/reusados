@@ -46,8 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['maintenance'])) {
                             echo '<p class="p-1">Token Expirado: ' . escape($tokenExpired ? 'Si' : 'No') . '</p>';
                             echo '<p class="p-1 rounded ' . ($refreshTokenExpired ? 'bg-danger-subtle' : 'bg-success-subtle') . '">Refresh Token: **********</p>';
                             echo '<p class="p-1">Refresh Token Expirado: ' . escape($refreshTokenExpired ? 'Si' : 'No') . '</p>';
-                            echo '<p class="p-1">Creado: ' . convertToLocalTime(escape($tokenData[0]['created_at'])) . '</p>';
-                            echo '<p class="px-1">Updateado: ' . convertToLocalTime(escape($tokenData[0]['updated_at'])) . '</p>';
+                            echo '<p class="p-1">Creado: ' . escape(convertToLocalTime($tokenData[0]['created_at'])) . '</p>';
+                            echo '<p class="px-1">Updateado: ' . escape(convertToLocalTime($tokenData[0]['updated_at'])) . '</p>';
                         } else {
                             echo escape('No token data found.');
                         }
@@ -96,7 +96,7 @@ foreach ($errors as $error):
                     escape($error['url']) . ' ' .
                     escape($error['file']) . ' ' .
                     '<span class="badge text-bg-warning bg-opacity-50 p-1">Line: ' . escape($error['line']) . '</span> ' .
-                    convertToLocalTime(escape($error['created_at']));
+                    escape(convertToLocalTime($error['created_at']));
     ?>
             </td>
         </tr>
@@ -126,7 +126,7 @@ foreach ($errors as $error):
             </form>
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <div>Ultima ejecución automática:</div>
-                <div><?= convertToLocalTime(escape($ultimaInsercion)); ?></div>
+                <div><?= escape(convertToLocalTime($ultimaInsercion)); ?></div>
             </div>
         </td>
     </tr>
