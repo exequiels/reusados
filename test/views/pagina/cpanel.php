@@ -11,16 +11,10 @@ $errorsPerPage = 10;
 $totalErrors = $errorLogModel->countErrors();
 $totalPages = ceil($totalErrors / $errorsPerPage);
 
-// $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-// $page = max($page, 1);
-// $page = min($page, $totalPages);
-// $offset = ($page - 1) * $errorsPerPage;
-
-// $errors = $errorLogModel->getAllErrors($errorsPerPage, $offset);
 $errors = $errorLogModel->getAllErrors();
-// $range = 2;
-// $startPage = max(1, $page - $range);
-// $endPage = min($totalPages, $page + $range);
+
+$videoGameModel = new VideoGameModel($pdo);
+$ultimaInsercion = $videoGameModel->getLastInsertion();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['maintenance'])) {
     $newMode = $_POST['maintenance'];
@@ -113,6 +107,25 @@ foreach ($errors as $error):
                     Full log
                 </button>
             </div>                        
+        </td>
+    </tr>
+    <tr>
+        <td class="p-3 bg-insidetabs">
+            Cron Jobs
+        </td>
+    </tr>
+    <tr> 
+        <td class="p-3">
+            <form action="config/cron_usados.php" method="post">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>"cron_usados.php"</div>
+                    <button type="submit">Ejecutar Script</button>
+                </div>
+            </form>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div>Ultima ejecución automática:</div>
+                <div><?php echo escape($ultimaInsercion); ?></div>
+            </div>
         </td>
     </tr>
 </table>

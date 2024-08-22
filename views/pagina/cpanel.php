@@ -13,6 +13,9 @@ $totalPages = ceil($totalErrors / $errorsPerPage);
 
 $errors = $errorLogModel->getAllErrors();
 
+$videoGameModel = new VideoGameModel($pdo);
+$ultimaInsercion = $videoGameModel->getLastInsertion();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['maintenance'])) {
     $newMode = $_POST['maintenance'];
     if ($newMode === '1' || $newMode === '0') {
@@ -115,10 +118,14 @@ foreach ($errors as $error):
         <td class="p-3">
             <form action="config/cron_usados.php" method="post">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div>Probar cron-job</div>
+                    <div>"cron_usados.php"</div>
                     <button type="submit">Ejecutar Script</button>
                 </div>
             </form>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div>Ultima ejecución automática:</div>
+                <div><?php echo escape($ultimaInsercion); ?></div>
+            </div>
         </td>
     </tr>
 </table>

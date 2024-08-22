@@ -112,4 +112,16 @@ class VideoGameModel
         }
     }
 
+    public function getLastInsertion()
+    {
+        try {
+            $sql = "SELECT created_at FROM mla_consolasyvideojuegos_principal ORDER BY created_at DESC LIMIT 1";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchColumn();
+
+        } catch (PDOException $e) {
+            throw $e;
+        }
+    }
 }
