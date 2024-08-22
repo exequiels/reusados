@@ -1,6 +1,10 @@
 <?php
 check_auth(['usuario', 'admin']);
+require_once 'utils/user_ranks.php';
+require_once 'utils/date_time_functions.php';
 $allUsers = $userModel->getAllUsers();
+
+sort($allUsers);
 ?>
 <table class="table table-sm table-bordered border-estilo table-striped">
         <thead>
@@ -12,9 +16,9 @@ $allUsers = $userModel->getAllUsers();
             </tr>
             <tr>
                 <th class="p-3">Nickname</th>
-                <th class="p-3">Rol</th>
+                <th class="p-3">Level</th>
                 <th class="p-3">Creado</th>
-                <th class="p-3">Status</th>
+                <th class="p-3">Cuenta</th>
             </tr>
         </thead>
         <tbody id="myTable">
@@ -25,13 +29,13 @@ $allUsers = $userModel->getAllUsers();
                         <?= escape($user['username']); ?>
                     </td>
                     <td class="p-3">
-                        <?= escape($user['rol']); ?>
+                        <?= escape(nivelDeUsuario($user['rol'])); ?>
                     </td>
                     <td class="p-3">
-                        <?= escape($user['created_at']); ?>
+                        <?= convertToLocalTime(escape($user['created_at'])); ?>
                     </td>
                     <td class="p-3">
-                        <?= escape($user['status']); ?>
+                        <?= escape($user['status']) == 1 ? 'activada' : 'inactivada'; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

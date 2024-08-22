@@ -1,6 +1,7 @@
 <?php
 /** @var ConfigModel $configModel */
 check_auth(['admin']);
+require_once 'utils/date_time_functions.php';
 
 $tokenModel = new TokenModel($pdo);
 $tokenData = $tokenModel->getToken();
@@ -45,8 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['maintenance'])) {
                             echo '<p class="p-1">Token Expirado: ' . escape($tokenExpired ? 'Si' : 'No') . '</p>';
                             echo '<p class="p-1 rounded ' . ($refreshTokenExpired ? 'bg-danger-subtle' : 'bg-success-subtle') . '">Refresh Token: **********</p>';
                             echo '<p class="p-1">Refresh Token Expirado: ' . escape($refreshTokenExpired ? 'Si' : 'No') . '</p>';
-                            echo '<p class="p-1">Creado: ' . escape($tokenData[0]['created_at']) . '</p>';
-                            echo '<p class="px-1">Updateado: ' . escape($tokenData[0]['updated_at']) . '</p>';
+                            echo '<p class="p-1">Creado: ' . convertToLocalTime(escape($tokenData[0]['created_at'])) . '</p>';
+                            echo '<p class="px-1">Updateado: ' . convertToLocalTime(escape($tokenData[0]['updated_at'])) . '</p>';
                         } else {
                             echo escape('No token data found.');
                         }
@@ -95,7 +96,7 @@ foreach ($errors as $error):
                     escape($error['url']) . ' ' .
                     escape($error['file']) . ' ' .
                     '<span class="badge text-bg-warning bg-opacity-50 p-1">Line: ' . escape($error['line']) . '</span> ' .
-                    escape($error['created_at']);
+                    convertToLocalTime(escape($error['created_at']));
     ?>
             </td>
         </tr>
@@ -125,7 +126,7 @@ foreach ($errors as $error):
             </form>
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <div>Ultima ejecución automática:</div>
-                <div><?php echo escape($ultimaInsercion); ?></div>
+                <div><?= convertToLocalTime(escape($ultimaInsercion)); ?></div>
             </div>
         </td>
     </tr>
