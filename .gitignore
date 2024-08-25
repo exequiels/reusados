@@ -8,3 +8,5 @@ deprecated
 backend
 mercado
 local_utils
+cron.sh
+.env

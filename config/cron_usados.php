@@ -2,8 +2,34 @@
 
 error_reporting(E_ALL);
 
-require_once 'connectar.php';
-require_once '../models/TokenModel.php';
+$logFile = __DIR__ . '/error_log.txt';
+
+function logMessage($message)
+{
+    global $logFile;
+    file_put_contents($logFile, date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, FILE_APPEND);
+}
+
+logMessage('Script execution started.');
+
+// Path to Composer autoload file
+$autoloadPath = '/home/u764883179/vendor/autoload.php';
+logMessage('Attempting to load autoload');
+
+if (file_exists($autoloadPath)) {
+    require $autoloadPath;
+} else {
+    logMessage('Autoload file not found: ' . $autoloadPath);
+    exit;
+}
+
+use Dotenv\Dotenv;
+
+$dotenvPath = __DIR__ . '/home/u764883179/public_html/.env';
+logMessage('Attempting to load .env file');
+
+require_once '/home/u764883179/public_html/config/connectar.php';
+require_once '/home/u764883179/public_html/models/TokenModel.php';
 
 $tokenModel = new TokenModel($pdo);
 $tokenData = $tokenModel->getToken();
@@ -12,9 +38,10 @@ if (empty($tokenData) || !isset($tokenData[0]['refresh_token'])) {
     die('No token data found or refresh token missing.');
 }
 
-$APP_ID = getenv('CLIENT_ID');
-$SECRET_KEY = getenv('CLIENT_SECRET');
+$_ENV['CLIENT_ID'];
+$_ENV['CLIENT_SECRET'];
 $refresh_token = $tokenData[0]['refresh_token'];
+
 
 $url = 'https://api.mercadolibre.com/oauth/token';
 $data = [
