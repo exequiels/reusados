@@ -1,9 +1,9 @@
 <?php
 
 // Charset=utf8mb4 explicit charset, for security purposes
-$dbLink = getenv('DB_LINK');
-$dbUser = getenv('DB_USER');
-$dbPW = getenv('DB_PW');
+$dbLink = $_ENV['DB_LINK'];
+$dbUser = $_ENV['DB_USER'];
+$dbPW = $_ENV['DB_PW'];
 
 // Security options
 $options = [

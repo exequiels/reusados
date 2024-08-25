@@ -2,19 +2,22 @@
 
 error_reporting(E_ALL);
 
+// Ruta del archivo de log
 $logFile = __DIR__ . '/error_log.txt';
 
+// Función para registrar mensajes en el log
 function logMessage($message)
 {
     global $logFile;
     file_put_contents($logFile, date('Y-m-d H:i:s') . ' - ' . $message . PHP_EOL, FILE_APPEND);
 }
 
+// Registrar el inicio del script
 logMessage('Script execution started.');
 
-// Path to Composer autoload file
+// Ruta a autoload.php
 $autoloadPath = '/home/u764883179/vendor/autoload.php';
-logMessage('Attempting to load autoload');
+logMessage('Autoload path: ' . $autoloadPath);
 
 if (file_exists($autoloadPath)) {
     require $autoloadPath;
@@ -25,21 +28,94 @@ if (file_exists($autoloadPath)) {
 
 use Dotenv\Dotenv;
 
-$dotenvPath = __DIR__ . '/home/u764883179/public_html/.env';
-logMessage('Attempting to load .env file');
+// Ruta a .env
+$dotenvPath = '/home/u764883179/public_html/.env';
+logMessage('Attempting to load .env file from: ' . $dotenvPath);
 
-require_once '/home/u764883179/public_html/config/connectar.php';
+// Check .env file existance
+if (file_exists($dotenvPath)) {
+    logMessage('.env file exists.');
+
+    try {
+        $dotenv = Dotenv::createImmutable('/home/u764883179/public_html');
+        $dotenv->load();
+
+        // Log .env content
+        logMessage('Raw .env content: ' . file_get_contents($dotenvPath));
+
+        // Log environment variables directly from $_ENV
+        logMessage('DB_LINK from $_ENV: ' . $_ENV['DB_LINK'] ?? 'not set');
+        logMessage('DB_USER from $_ENV: ' . $_ENV['DB_USER'] ?? 'not set');
+        logMessage('DB_PW from $_ENV: ' . $_ENV['DB_PW'] ?? 'not set');
+
+    } catch (Exception $e) {
+        logMessage('Error loading .env file: ' . $e->getMessage());
+        exit('Error loading .env file');
+    }
+} else {
+    logMessage('.env file does not exist.');
+    exit('Error: .env file does not exist.');
+}
+
+// Log at the end of script
+logMessage('Script execution ended successfully.');
+
+try {
+    // Log a step before including the connection file
+    file_put_contents($logFile, "Intentando connectar a las " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
+
+    // Include the connection file
+    require_once "/home/u764883179/public_html/config/cron_connectar.php";
+
+    // Log a step after successful inclusion
+    file_put_contents($logFile, "Archivo cron_connectar.php incluido exitosamente a las " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
+
+    // If the connection is successful
+    if (isset($pdo)) {
+        file_put_contents($logFile, "Conexión a la base de datos exitosa a las " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
+    } else {
+        file_put_contents($logFile, "Variable PDO no está definida después de incluir el archivo a las " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
+    }
+} catch (PDOException $e) {
+    // Log any connection errors
+    file_put_contents($logFile, "Error de conexión a la base de datos: " . $e->getMessage() . " a las " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
+} catch (Exception $e) {
+    // Catch any other exceptions
+    file_put_contents($logFile, "Error: " . $e->getMessage() . " a las " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
+}
+
+// Log a message at the end of the file to confirm execution
+logMessage('Reached end of cron_connectar.php.');
+logMessage('cron_connectar.php loaded successfully.');
+
+// Continuar con la lógica del script
+logMessage('Script execution continued.');
+
+logMessage('Attempting to load TokenModel.php');
 require_once '/home/u764883179/public_html/models/TokenModel.php';
+logMessage('TokenModel.php loaded successfully.');
 
+// Instantiate the TokenModel
+logMessage('Instantiating TokenModel.');
 $tokenModel = new TokenModel($pdo);
+logMessage('TokenModel instantiated successfully.');
+
+// Fetch the token data
+logMessage('Attempting to fetch token data.');
 $tokenData = $tokenModel->getToken();
 
 if (empty($tokenData) || !isset($tokenData[0]['refresh_token'])) {
-    die('No token data found or refresh token missing.');
+    logMessage('No token data found or refresh token missing.');
+    exit('No token data found or refresh token missing.');
+} else {
+    logMessage('Token data fetched successfully.');
 }
 
-$_ENV['CLIENT_ID'];
-$_ENV['CLIENT_SECRET'];
+// Continue with your logic here...
+logMessage('Proceeding with further script logic.');
+
+$APP_ID = $_ENV['CLIENT_ID'];
+$SECRET_KEY = $_ENV['CLIENT_SECRET'];
 $refresh_token = $tokenData[0]['refresh_token'];
 
 
