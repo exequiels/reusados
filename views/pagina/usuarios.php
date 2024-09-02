@@ -18,7 +18,7 @@ sort($allUsers);
                 <th class="p-3">Nickname</th>
                 <th class="p-3">Level</th>
                 <th class="p-3">Creado</th>
-                <th class="p-3">Cuenta</th>
+                <th class="p-3">Status</th>
             </tr>
         </thead>
         <tbody id="myTable">
@@ -35,7 +35,7 @@ sort($allUsers);
                         <?= escape(convertToLocalTime($user['created_at'])); ?>
                     </td>
                     <td class="p-3">
-                        <?= escape($user['status']) == 1 ? 'activada' : 'inactivada'; ?>
+                        <?= escape($user['status']) == 1 ? 'active' : 'inactive'; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

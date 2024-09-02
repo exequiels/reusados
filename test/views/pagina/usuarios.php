@@ -35,7 +35,7 @@ sort($allUsers);
                         <?= escape(convertToLocalTime($user['created_at'])); ?>
                     </td>
                     <td class="p-3">
-                        <?= escape($user['status']) == 1 ? 'activada' : 'inactivada'; ?>
+                        <?= escape($user['status']) == 1 ? 'activada' : 'inactiva'; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>

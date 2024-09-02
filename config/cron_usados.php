@@ -40,14 +40,6 @@ if (file_exists($dotenvPath)) {
         $dotenv = Dotenv::createImmutable('/home/u764883179/public_html');
         $dotenv->load();
 
-        // Log .env content
-        logMessage('Raw .env content: ' . file_get_contents($dotenvPath));
-
-        // Log environment variables directly from $_ENV
-        logMessage('DB_LINK from $_ENV: ' . $_ENV['DB_LINK'] ?? 'not set');
-        logMessage('DB_USER from $_ENV: ' . $_ENV['DB_USER'] ?? 'not set');
-        logMessage('DB_PW from $_ENV: ' . $_ENV['DB_PW'] ?? 'not set');
-
     } catch (Exception $e) {
         logMessage('Error loading .env file: ' . $e->getMessage());
         exit('Error loading .env file');
@@ -208,7 +200,7 @@ function extraerDatos($pdo, $SITE_ID, $ACCESS_TOKEN, $searchTerms)
                         all_item_categoria = VALUES(all_item_categoria),
                         all_cuotas = VALUES(all_cuotas),
                         all_cuotas_cantidad = VALUES(all_cuotas_cantidad),
-                        status = VALUES(status)");
+                        status = VALUES(status);");
 
                     foreach ($results as $result) {
                         // Process each item and extract the required data
@@ -238,13 +230,13 @@ function extraerDatos($pdo, $SITE_ID, $ACCESS_TOKEN, $searchTerms)
                             ':status' => 1,
                         ]);
                     }
-                    echo "<p>Insertados " . count($results) . " artículos del término '$term'.</p>";
+                    echo "Insertados " . count($results) . " artículos del término '$term'.";
                 } else {
                     echo "No se pudo establecer una conexión con la base de datos.";
                     return 0; // Salir si no hay conexión a la base de datos
                 }
 
-                echo "Llamado No. $counter para '$term': Se han obtenido " . count($results) . " artículos.<br>" . PHP_EOL;
+                echo "Llamado No. $counter para '$term': Se han obtenido " . count($results) . " artículos\n" . PHP_EOL;
                 $counter++;
 
                 // Proximos datos
@@ -268,8 +260,8 @@ function extraerDatos($pdo, $SITE_ID, $ACCESS_TOKEN, $searchTerms)
 }
 
 $searchTerms = [
-    'MLA438566' => ['super nintendo', 'playstation 2', 'playstation 3'],
-    'MLA373840' =>  ['super nintendo', 'playstation 2', 'playstation 3'],
+    'MLA438566' => ['nintendo nes', 'super nintendo', 'nintendo 64', 'gamecube', 'sega genesis', 'sega saturn', 'sega dreamcast', 'playstation 1', 'playstation 2', 'playstation 3'],
+    'MLA438566' => ['nintendo nes', 'super nintendo', 'nintendo 64', 'gamecube', 'sega genesis', 'sega saturn', 'sega dreamcast', 'playstation 1', 'playstation 2', 'playstation 3'],
 ];
 
 // $searchTerms = [
