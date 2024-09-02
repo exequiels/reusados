@@ -261,7 +261,7 @@ function extraerDatos($pdo, $SITE_ID, $ACCESS_TOKEN, $searchTerms)
 
 $searchTerms = [
     'MLA438566' => ['nintendo nes', 'super nintendo', 'nintendo 64', 'gamecube', 'sega genesis', 'sega saturn', 'sega dreamcast', 'playstation 1', 'playstation 2', 'playstation 3'],
-    'MLA438566' => ['nintendo nes', 'super nintendo', 'nintendo 64', 'gamecube', 'sega genesis', 'sega saturn', 'sega dreamcast', 'playstation 1', 'playstation 2', 'playstation 3'],
+    'MLA373840' => ['nintendo nes', 'super nintendo', 'nintendo 64', 'gamecube', 'sega genesis', 'sega saturn', 'sega dreamcast', 'playstation 1', 'playstation 2', 'playstation 3'],
 ];
 
 // $searchTerms = [
