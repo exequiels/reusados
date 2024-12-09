@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    const url = baseUrl + "?dir=gamehunt";
+    const url = baseUrl + "?dir=bazar";
 
     if (params.length > 0) {
       const newUrl = url + "&" + params.join("&");

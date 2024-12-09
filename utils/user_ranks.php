@@ -3,13 +3,13 @@
 function nivelDeUsuario($usuario)
 {
     switch ($usuario) {
-        case "user":
+        case "usuario":
             return "1";
-        case "member":
+        case "conocido":
             return "2";
-        case "veteran":
+        case "distinguido":
             return "3";
-        case "mod":
+        case "guru":
             return "4";
         case "admin":
             return "5";

@@ -7,16 +7,11 @@
 <!-- // Menu -->
 
 <!-- Seccion central -->
+<?php if ($universo !== 'inicio'): ?>
     <!-- Cerrar ventana -->
     <script src="assets/js/icono_cerrar_seccion_central.js"></script>
-<!-- // Seccion central -->
-
-<!-- Inicio -->
-<?php if ($universo === 'inicio'): ?>
-    <!-- Hora actual del ordenador -->
-    <!--<script src="js/hora_ordernador.js"></script>-->
 <?php endif; ?>
-<!-- // Inicio -->
+<!-- // Seccion central -->
 
 <!-- Registrarse -->
 <?php if ($universo === 'registrarse'): ?>
@@ -24,8 +19,24 @@
 <?php endif; ?>
 <!-- // Registrarse  -->
 
-<!-- Gamehunt -->
-<?php if ($universo === 'gamehunt'): ?>
+<!-- Archivo -->
+<?php if ($universo === 'archivo'): ?>
+    <script type="text/javascript">
+        const baseUrl = "<?php echo escape($url_base, ENT_QUOTES, 'UTF-8'); ?>";
+        const desvioUrl = "<?php echo escape($desvioUrl, ENT_QUOTES, 'UTF-8'); ?>";
+    </script>
+    <!-- Armar url -->
+    <script src="assets/js/archivo_url.js"></script>
+    <!-- Armar select juegos -->
+    <script src="assets/js/archivo_select_juegos.js"></script>
+    <?php if (has_role($userRole, 'conocido')): ?>
+        <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <?php endif; ?>
+<?php endif; ?>
+<!-- // Archivo -->
+
+<!-- Bazar -->
+<?php if ($universo === 'bazar'): ?>
     <script type="text/javascript">
         const baseUrl = "<?php echo escape($url_base, ENT_QUOTES, 'UTF-8'); ?>";
         const desvioUrl = "<?php echo escape($desvioUrl, ENT_QUOTES, 'UTF-8'); ?>";
@@ -34,9 +45,11 @@
     <script src="assets/js/buscador_url.js"></script>
     <!-- Resetear filtros -->
     <script src="assets/js/buscador_resetear_filtros.js"></script>
+    <!-- Armar select subcategorias -->
+    <script src="assets/js/buscador_select_subcategoria.js"></script>
 <?php endif; ?>
-<!-- // Gamehunt -->
-
+<!-- // Bazar -->
+ 
 <!-- Tendencias -->
 <?php if ($universo === 'rankings'): ?>
     <script type="text/javascript">

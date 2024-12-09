@@ -12,16 +12,16 @@
             </h6>
         </th>
     </tr>
-        <!-- <tr class="p-3 menu-item">
+        <tr class="p-3 menu-item">
             <td class="py-3 px-3"><a href="?dir=archivo">Archivo</a></td>
         </tr>
         <tr class="p-3 menu-item">
-            <td class="py-3 px-3"><a href="?dir=rankings">Rankings</a></td>
-        </tr> -->
-        <tr class="p-3 menu-item">
-            <td class="py-3 px-3"><a href="?dir=gamehunt">Gamehunt</a></td>
+            <td class="py-3 px-3"><a href="?dir=bazar">Bazar</a></td>
         </tr>
-        <?php if (is_admin($userRole)): ?>
+        <tr class="p-3 menu-item">
+            <td class="py-3 px-3"><a href="?dir=stats">Estadísticas</a></td>
+        </tr>
+        <?php if (has_role($userRole, 'admin')): ?>
             <tr class="p-3 menu-item">
                 <td class="py-3 px-3"><a href="?dir=usuarios">Usuarios</a></td>
             </tr>

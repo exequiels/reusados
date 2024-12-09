@@ -4,76 +4,75 @@ require_once 'utils/user_ranks.php';
 require_once 'utils/date_time_functions.php';
 $allUsers = $userModel->getAllUsers();
 
-sort($allUsers);
+usort($allUsers, function ($a, $b) {
+    return strcasecmp($a['username'], $b['username']);
+});
 ?>
 <table class="table table-sm table-bordered border-estilo table-striped">
-        <thead>
-            <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
-            <tr>
-                <td class="p-3" colspan="4">
-                <input class="w-100" type="text" id="myInput" onkeyup="myFunction()" placeholder="Filtrar usuarios por nickname, rol, etc ..">
-                </td>
-            </tr>
-            <tr>
-                <th class="p-3">Nickname</th>
-                <th class="p-3">Level</th>
-                <th class="p-3">Creado</th>
-                <th class="p-3">Status</th>
-            </tr>
-        </thead>
-        <tbody id="myTable">
-        <?php if (!empty($allUsers)) : ?>
-            <?php foreach ($allUsers as $user) : ?>
-                <tr>
-                    <td class="p-3">
-                        <?= escape($user['username']); ?>
-                    </td>
-                    <td class="p-3">
-                        <?= escape(nivelDeUsuario($user['rol'])); ?>
-                    </td>
-                    <td class="p-3">
-                        <?= escape(convertToLocalTime($user['created_at'])); ?>
-                    </td>
-                    <td class="p-3">
-                        <?= escape($user['status']) == 1 ? 'active' : 'inactive'; ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        <?php else : ?>
-            <tr>
-                <td class="p-3" colspan="6">
-                    No hay usuarios..
-                </td>
-            </tr>
-        <?php endif; ?>
+    <thead>
+        <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <div class="container">
+                    <input class="p-2 mt-2 mb-2 w-100" type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar usuario..">
+                    <div class="row" id="myDivs">
+                        <?php if (!empty($allUsers)) : ?>
+                            <?php foreach ($allUsers as $user) : ?>
+                                <div class="col-12 mb-3">
+                                    <div class="user-card p-3 border border-dark d-flex flex-column flex-md-row align-items-center">
+                                        <!-- Imagen del usuario -->
+                                        <img src="assets/imgs/perfil/default.webp" alt="Foto de <?= escape($user['username']); ?>" 
+                                            class="img-fluid mb-3 mb-md-0 ms-md-3 order-md-last border border-dark"
+                                            style="width: 70px; height: 70px; object-fit: cover;">
+
+                                        <!-- Información del usuario -->
+                                        <div class="user-info text-center text-md-start flex-grow-1">
+                                            <div class="username mb-2">
+                                                <h6><?= escape($user['username']); ?></h6>
+                                            </div>
+                                            <div class="details">
+                                                <p class="mb-1">Colección: <a href="#">Ver</a></p>
+                                                <p class="mb-1">Manta: <a href="#">Mercadería</a></p>
+                                                <p class="mb-1">Trades: <a href="#">Busca</a>/<a href="#">Ofrece</a></p>
+                                                <p class="mb-0">Voucheado: * veces</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <div class="col-12">
+                                <div class="alert alert-warning" role="alert">
+                                    No hay usuarios..
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </td>
+        </tr>
     </tbody>
 </table>
 <script>
-      function myFunction() {
-      // Declare variables 
-      var input, filter, table, tr, td, i, occurrence;
+function myFunction() {
+    var input, filter, cards, cardContainer, title, i, txtValue;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    cardContainer = document.getElementById("myDivs");
+    cards = cardContainer.getElementsByClassName('col-12');
 
-      input = document.getElementById("myInput");
-      filter = input.value.toUpperCase();
-      table = document.getElementById("myTable");
-      tr = table.getElementsByTagName("tr");
-
-      // Loop through all table rows, and hide those who don't match the search query
-     for (i = 0; i < tr.length; i++) {
-         occurrence = false; // Only reset to false once per row.
-         td = tr[i].getElementsByTagName("td");
-         for(var j=0; j< td.length; j++){                
-             currentTd = td[j];
-             if (currentTd ) {
-                 if (currentTd.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                     tr[i].style.display = "";
-                     occurrence = true;
-                 } 
-             }
-         }
-         if(!occurrence){
-             tr[i].style.display = "none";
-         } 
-     }
-   }
+    for (i = 0; i < cards.length; i++) {
+        title = cards[i].getElementsByClassName("username")[0];
+        if (title) {
+            txtValue = title.textContent || title.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                cards[i].style.display = "";
+            } else {
+                cards[i].style.display = "none";
+            }
+        }
+    }
+}
 </script>

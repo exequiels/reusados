@@ -1,7 +1,7 @@
 <?php
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
 require_once 'config/class_loader.php';
 require_once 'config/error_handler_setup.php';
@@ -17,6 +17,7 @@ configureGlobalExceptionHandler($pdo);
 
 $errorHandler = new ErrorHandler($pdo);
 $userModel = new UserModel($pdo);
+$permisosModel = new PermisosModel($pdo);
 $configModel = new ConfigModel($pdo);
 $userRole = isset($_SESSION['user_id']) ? $userModel->getUserRole($_SESSION['user_id']) : '';
 $maintenanceMode = $configModel->getMaintenanceMode();
@@ -57,7 +58,7 @@ $seccionCentral = ob_get_clean();
                         </div>
                     </div>
                     <!-- // Topbar -->
-                    <?php if (is_loged_user($userRole)): ?>
+                    <?php if (has_role($userRole, 'usuarios')): ?>
                     <!-- Menu -->
                         <div class="col-lg-2 col-sm-11 col-10 mx-auto">
                             <div class="row">

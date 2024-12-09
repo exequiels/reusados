@@ -21,7 +21,7 @@
         <tr class="p-3 menu-item">
             <td class="py-3 px-3"><a href="?dir=gamehunt">Gamehunt</a></td>
         </tr>
-        <?php if (is_admin($userRole)): ?>
+        <?php if (has_role($userRole, 'admin')): ?>
             <tr class="p-3 menu-item">
                 <td class="py-3 px-3"><a href="?dir=usuarios">Usuarios</a></td>
             </tr>

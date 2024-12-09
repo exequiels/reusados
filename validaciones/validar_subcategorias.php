@@ -5,5 +5,5 @@ $subcategorias = ["accesorios", "consolas", "flippers y arcades", "juegos", "rep
                 "juegos de mesa", "juegos de salón", "juguetes de construcción", "juguetes de oficios", "mesas y sillas", "muñecos y muñecas",
                 "patines y patinetas", "peluches", "títeres y marionetas", "vehículos de juguete", "varios", "música", "filatelia",
                 "estampillas", "postales", "sellos", "sobres", "tarjetas telefónicas", "monedas y billetes", "billetes", "fichas y cospeles",
-                "medallas", "monedas", "numismática"
+                "medallas", "monedas", "numismática", "desconocida"
                 ];

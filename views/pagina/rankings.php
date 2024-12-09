@@ -10,7 +10,7 @@ check_auth(['usuario', 'admin']);
                     <a class="nav-link active" id="tab1-tab" data-bs-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">Archivo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="tab2-tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Gamehunts</a>
+                    <a class="nav-link" id="tab2-tab" data-bs-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Bazar</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="tab3-tab" data-bs-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Juegos</a>
@@ -81,7 +81,7 @@ try {
     die();
 }
 ?>
-            <span class="fw-bold">Lo mas buscado en gamehunt de video juegos.</span>
+            <span class="fw-bold">Lo mas buscado en el bazar de video juegos.</span>
                 <table class="table table-sm table-bordered border-estilo mt-4">
                     <?php if (!empty($dataSubcategorias)): ?>    
                         <thead>

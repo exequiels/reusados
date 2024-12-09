@@ -87,4 +87,15 @@ class UserModel
             throw $e;
         }
     }
+
+    public function getUserDetailsById($userId)
+    {
+        try {
+            $stmt = $this->pdo->prepare('SELECT * FROM usuarios WHERE id = :id');
+            $stmt->execute(['id' => $userId]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw $e;
+        }
+    }
 }

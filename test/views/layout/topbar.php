@@ -2,13 +2,13 @@
     <tr>
         <td class="py-1 px-3">
             <div class="d-flex flex-wrap align-items-center justify-content-<?= (isset($_SESSION['user_id'])) ? 'between' : 'end'; ?>">
-                <?php if (is_loged_user($userRole)): ?>
+                <?php if (has_role($userRole, 'usuario')): ?>
                     <div class="col-12 col-sm-auto me-sm-2 mt-1 mb-1">
                         <div class="d-flex">
                             <div class="col-6 col-sm-auto me-sm-2 mt-1 mb-1">
                                 <button type="button" class="w-100 border border-dark-subtle p-2"><a href="?dir=mi-perfil">Perfil</a></button>
                             </div>
-                            <?php if (is_admin($userRole)): ?>
+                            <?php if (has_role($userRole, 'admin')): ?>
                                 <div class="col-6 col-sm-auto me-sm-2 mt-1 mb-1 d-none d-sm-block">
                                     <button type="button" class="w-100 border border-dark-subtle p-2"><a href="?dir=cpanel">Cpanel</a></button>
                                 </div>

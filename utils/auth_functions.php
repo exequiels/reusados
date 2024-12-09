@@ -19,12 +19,21 @@ function check_auth($required_roles = null)
     }
 }
 
-function is_loged_user($role)
+function get_valid_roles($roleLevel)
 {
-    return $role === 'usuario' || $role === 'admin';
+    $roleHierarchy = [
+        'usuarios' => ['usuarios', 'conocidos', 'distinguidos', 'gurus', 'admin'],
+        'conocidos' => ['conocidos', 'distinguidos', 'gurus', 'admin'],
+        'distinguidos' => ['distinguidos', 'gurus', 'admin'],
+        'gurus' => ['gurus', 'admin'],
+        'admin' => ['admin']
+    ];
+
+    return $roleHierarchy[$roleLevel] ?? [];
 }
 
-function is_admin($role)
+function has_role($userRole, $roleLevel)
 {
-    return $role === 'admin';
+    $validRoles = get_valid_roles($roleLevel);
+    return in_array($userRole, $validRoles, true);
 }

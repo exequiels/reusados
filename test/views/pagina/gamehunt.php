@@ -131,7 +131,7 @@ if (!isset($_GET['pais']) || !isset($_GET['categoria'])) {
                     <h6><?php echo ($row['all_item_condition'] == 'used') ? 'Usado' : ''; ?></h6>
                     <div class="d-flex justify-content-end">
                         <a href="enlace?dot=<?php echo urlencode($encryptedurl); ?>" data-pais="<?php echo escape($pais); ?>" data-categoria="<?php echo escape($categoria); ?>" data-subcategoria="<?php echo escape($row['all_item_categoria']); ?>" target="_blank">
-                            <img src="assets/imgs/cofre.png" width="55px" alt="Cofre" id="viajero">
+                            <img src="assets/imgs/cofre.png" width="55px" alt="Cofre" id="cofre">
                         </a>
                     </div>
                 </td>

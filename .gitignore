@@ -10,3 +10,12 @@ mercado
 local_utils
 cron.sh
 .env
+vendor
+composer.json
+composer.lock
+wiki.php
+data.php
+data.txt
+categorias.php
+master_cron.php
+info.php
