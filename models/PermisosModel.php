@@ -42,7 +42,6 @@ class PermisosModel
             ');
             return $stmt->fetchAll(PDO::FETCH_GROUP | PDO::FETCH_COLUMN);
         } catch (PDOException $e) {
-            $this->pdo->rollBack();
             throw $e;
         }
     }
@@ -50,16 +49,14 @@ class PermisosModel
     public function getPermisosPorRolId($rolId)
     {
         try {
-            $stmt = $this->pdo->query('
-                SELECT rol_id, permiso_id
-                FROM roles_permisos rp
-                JOIN roles r ON rp.rol_id = r.id
-                WHERE r.rol != "admin"
+            $stmt = $this->pdo->prepare('
+                SELECT permiso_id
+                FROM roles_permisos
+                WHERE rol_id = :rol_id
             ');
             $stmt->execute(['rol_id' => $rolId]);
             return $stmt->fetchAll(PDO::FETCH_COLUMN);
         } catch (PDOException $e) {
-            $this->pdo->rollBack();
             throw $e;
         }
     }

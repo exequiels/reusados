@@ -1,5 +1,5 @@
 <?php
-check_auth(['usuario', 'admin']);
+denied_permissions_functions(8);
 
 // Pagina default cuando las busquedas se salen de las validaciones
 $pagina_buscador = $url_base . "?dir=gamehunt";

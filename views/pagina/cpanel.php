@@ -1,6 +1,7 @@
 <?php
 /** @var ConfigModel $configModel */
-check_auth(['admin']);
+denied_permissions_functions(6);
+
 require_once 'utils/date_time_functions.php';
 
 $tokenModel = new TokenModel($pdo);

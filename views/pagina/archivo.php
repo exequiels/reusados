@@ -1,4 +1,6 @@
 <?php
+denied_permissions_functions(1);
+
 $archivoModel = new ArchivoModel($pdo);
 $usuario = $userModel->getUserDetailsById($_SESSION['user_id']);
 $archivoConsolas = $archivoModel->getArchivoConsolas();
@@ -246,12 +248,12 @@ $pagina_archivo = "https://www.reusados.net/?dir=archivo";
     </tr>
     <tr>
         <td class="p-2" colspan="2">
-            <div class="<?php echo has_role($userRole, 'conocido') ? 'd-flex justify-content-between' : 'd-flex justify-content-center'; ?> align-items-center">
-                <?php if (has_role($userRole, 'conocido')): ?>
+            <div class="<?php echo (has_permission(7)) ? 'd-flex justify-content-between' : 'd-flex justify-content-center';?> align-items-center">
+                <?php if (has_permission(7)): ?>
                     <button type="button" data-bs-toggle="modal" data-bs-target="#editarimagenes">
                         Editar
                     </button>
-                <?php endif; ?>
+                <?php endif;?>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#aportespor">Aportes..</a>
             </div>
         </td>
@@ -275,12 +277,12 @@ $pagina_archivo = "https://www.reusados.net/?dir=archivo";
     </tr>
     <tr>
         <td class="p-2" colspan="2">
-            <div class="<?php echo has_role($userRole, 'conocido') ? 'd-flex justify-content-between' : 'd-flex justify-content-center'; ?> align-items-center">
-                <?php if (has_role($userRole, 'conocido')): ?>
+            <div class="<?php echo (has_permission(7)) ? 'd-flex justify-content-between' : 'd-flex justify-content-center';?> align-items-center">
+                <?php if (has_permission(7)) : ?>
                     <button type="button" data-bs-toggle="modal" data-bs-target="#editar">
                         Editar
                     </button>
-                <?php endif; ?>
+                <?php endif;?>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#editadopor">Aportes..</a>
             </div>
         </td>
@@ -376,7 +378,7 @@ $pagina_archivo = "https://www.reusados.net/?dir=archivo";
     </script>
     <?php endif ;?>
 
-    <?php if (has_role($userRole, 'conocido')): ?>
+    <?php if (has_permission(7)): ?>
     <!-- Modal imagen subir -->
     <div class="modal fade" id="editarimagenes" tabindex="-1" aria-labelledby="Editar imagenes" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -491,7 +493,7 @@ $pagina_archivo = "https://www.reusados.net/?dir=archivo";
             });
         });
     </script>
-    <?php endif; ?>
+    <?php endif;?>
 
     <!-- Modal imagen aportes -->
     <div class="modal fade" id="aportespor" tabindex="-1" aria-labelledby="Aportes por" aria-hidden="true">
@@ -520,7 +522,7 @@ $pagina_archivo = "https://www.reusados.net/?dir=archivo";
         </div>
     </div>
 
-    <?php if (has_role($userRole, 'conocido')): ?>
+    <?php if (has_permission(7)): ?>
     <!-- Modal editar info -->
     <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="editar" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">

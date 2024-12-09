@@ -11,7 +11,8 @@ require_once 'config/escape_setup.php';
 require_once 'config/connectar.php';
 
 require_once 'utils/maintenance_functions.php';
-require_once 'utils/auth_functions.php';
+require_once 'utils/permissions_functions.php';
+require_once 'utils/denied_permissions_functions.php';
 
 configureGlobalExceptionHandler($pdo);
 
@@ -22,7 +23,7 @@ $configModel = new ConfigModel($pdo);
 $userRole = isset($_SESSION['user_id']) ? $userModel->getUserRole($_SESSION['user_id']) : '';
 $maintenanceMode = $configModel->getMaintenanceMode();
 
-check_auth();
+// check_auth();
 check_maintenance();
 
 // Rutas
@@ -58,14 +59,14 @@ $seccionCentral = ob_get_clean();
                         </div>
                     </div>
                     <!-- // Topbar -->
-                    <?php if (has_role($userRole, 'usuarios')): ?>
+                    <?php if (isset($_SESSION['user_id'])): ?>
                     <!-- Menu -->
                         <div class="col-lg-2 col-sm-11 col-10 mx-auto">
                             <div class="row">
                                 <?php require_once "views/layout/menu.php"; ?>
                             </div>
                         </div>
-                    <?php endif; ?>
+                    <?php endif;?>
                 <?php endif; ?>
                 <!-- // Menu -->
                 <!-- Seccion central -->

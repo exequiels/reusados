@@ -1,5 +1,6 @@
 <?php
-check_auth(['usuario', 'admin']);
+denied_permissions_functions(5);
+
 require_once 'utils/user_ranks.php';
 require_once 'utils/date_time_functions.php';
 $perfil = $userModel->getUserDetailsById($_SESSION['user_id']);

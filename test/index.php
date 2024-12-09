@@ -57,14 +57,12 @@ $seccionCentral = ob_get_clean();
                         </div>
                     </div>
                     <!-- // Topbar -->
-                    <?php if (has_role($userRole, 'usuario')): ?>
                     <!-- Menu -->
                         <div class="col-lg-2 col-sm-11 col-10 mx-auto">
                             <div class="row">
                                 <?php require_once "views/layout/menu.php"; ?>
                             </div>
                         </div>
-                    <?php endif; ?>
                 <?php endif; ?>
                 <!-- // Menu -->
                 <!-- Seccion central -->

@@ -29,9 +29,9 @@
     <script src="assets/js/archivo_url.js"></script>
     <!-- Armar select juegos -->
     <script src="assets/js/archivo_select_juegos.js"></script>
-    <?php if (has_role($userRole, 'conocido')): ?>
+    <?php if (isset($_SESSION['user_id'])):?>
         <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
-    <?php endif; ?>
+    <?php endif;?>
 <?php endif; ?>
 <!-- // Archivo -->
 

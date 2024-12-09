@@ -1,5 +1,5 @@
 <?php
-check_auth(['usuario', 'admin']);
+denied_permissions_functions(3);
 ?>
 <table class="table table-sm table-bordered border-estilo">
     <?php include_once "views/layout/encabezado_de_tabla.php"; ?>

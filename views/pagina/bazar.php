@@ -1,5 +1,5 @@
 <?php
-check_auth(['usuario', 'admin']);
+denied_permissions_functions(2);
 
 // Definir variables con valores predeterminados
 $onGoingSearch = false;
@@ -83,7 +83,7 @@ if (!isset($_GET['pais']) || !isset($_GET['categoria'])) {
                 <td>
                     <div class="container">
                         <div class="row">
-                            <?php if ($page === 1) { ?>
+                        <?php if ($page === 1 && has_permission(8)):  ?>
                             <div class="col-12 mb-2 mt-2">
                                 <div class="user-card p-3 border border-dark d-flex flex-column">
                                     <div class="d-flex flex-column flex-md-row align-items-center align-items-md-start">
@@ -103,7 +103,7 @@ if (!isset($_GET['pais']) || !isset($_GET['categoria'])) {
                                     </div>
                                 </div>
                             </div>
-                        <?php } ?>
+                        <?php endif; ?>
                             <?php
                             function truncateText($text, $length)
                             {
