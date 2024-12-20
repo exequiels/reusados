@@ -27,6 +27,11 @@
                 <td class="py-3 px-3"><a href="?dir=stats">Estadísticas</a></td>
             </tr>
         <?php endif;?>
+        <?php if (has_permission(33)): ?>
+            <tr class="p-3 menu-item">
+                <td class="py-3 px-3"><a href="?dir=tablon">Tablón</a></td>
+            </tr>
+        <?php endif; ?>
         <?php if (has_permission(4)): ?>
             <tr class="p-3 menu-item">
                 <td class="py-3 px-3"><a href="?dir=usuarios">Usuarios</a></td>

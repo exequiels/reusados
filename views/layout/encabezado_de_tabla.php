@@ -5,11 +5,17 @@
                 $dir = isset($_GET['dir']) ? $_GET['dir'] : '';
             require_once "validaciones/paginas_permitidas.php";
             if ($dir !== '' && in_array($dir, $allowed_pages)) {
-                if($dir === 'stats') {
-                    echo ucfirst('Estadísticas');
-                } else {
-                    $dir = str_replace('-', ' ', $dir);
-                    echo ucfirst($dir);
+                switch ($dir) {
+                    case 'stats':
+                        echo 'Estadísticas';
+                        break;
+                    case 'tablon':
+                        echo 'Tablón';
+                        break;
+                    default:
+                        $dir = str_replace('-', ' ', $dir);
+                        echo ucfirst($dir);
+                        break;
                 }
             } else {
                 echo 'Inicio';

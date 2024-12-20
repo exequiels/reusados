@@ -9,24 +9,6 @@ class ErrorLogModel
         $this->pdo = $pdo;
     }
 
-    // public function getAllErrors($limit, $offset)
-    // {
-    //     try {
-    //         $stmt = $this->pdo->prepare('
-    //             SELECT * FROM error_log
-    //             ORDER BY created_at DESC
-    //             LIMIT :offset, :limit
-    //         ');
-    //         $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-    //         $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
-    //         $stmt->execute();
-    //         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //     } catch (PDOException $e) {
-    //         error_log('Error fetching errors: ' . $e->getMessage());
-    //         return [];
-    //     }
-    // }
-
     public function getAllErrors()
     {
         try {
@@ -50,6 +32,18 @@ class ErrorLogModel
         } catch (PDOException $e) {
             error_log('Error counting errors: ' . $e->getMessage());
             return 0;
+        }
+    }
+
+    public function deleteAllErrors()
+    {
+        try {
+            $stmt = $this->pdo->prepare('TRUNCATE TABLE error_log');
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            error_log('Error deleting all errors: ' . $e->getMessage());
+            return false;
         }
     }
 }

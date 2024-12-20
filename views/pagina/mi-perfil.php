@@ -23,11 +23,11 @@ $perfil = $userModel->getUserDetailsById($_SESSION['user_id']);
     <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Selecciona tu Avatar</h5>
+                <span class="modal-title mb-3">Selecciona tu Avatar</span>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body bg-alterno">
-            <h6 class="mb-3">Héroes Tier 1</h6>                
+            <span class="mb-3">Héroes Tier 1</span>                
                 <div class="container">
                     <div class="row">
                         <div class="col-12 mb-3 mt-3">
@@ -39,31 +39,12 @@ $perfil = $userModel->getUserDetailsById($_SESSION['user_id']);
                                 <!-- Datos del Avatar -->
                                 <div class="user-info text-center text-md-start flex-grow-1">
                                     <div class="username mb-2">
-                                        <h6>Enano de Ciudad</h6><br>
+                                        <span>Enano de Ciudad</span><br>
                                     </div>
                                     <div class="details">
                                         <p class="mb-1">Descripción: Resistente y astuto, ideal para gestionar múltiples artículos.</p><br>
                                         <!-- <p class="mb-1">Habilidad: +1 galeria de imágenes adicional en la manta.</p><br> -->
                                         <p class="mb-0">Elegir: </span><input class="me-2" type="radio" name="avatarOption" id="avatarOption2"></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <div class="user-card p-3 border border-dark d-flex flex-column flex-md-row align-items-center">
-                                <!-- Imagen del Avatar -->
-                                <img src="assets/imgs/perfil/elfo_bosque.png" alt="Avatar" 
-                                class="img-fluid mb-3 mb-md-0 ms-md-3 order-md-last border border-dark" 
-                                style="width: 100px; height: 100px; object-fit: cover;">
-                                <!-- Datos del Avatar -->
-                                <div class="user-info text-center text-md-start flex-grow-1">
-                                    <div class="username mb-2">
-                                        <h6>Elfo del Bosque</h6><br>
-                                    </div>
-                                    <div class="details">
-                                        <p class="mb-1">Descripción: Los espíritus de la naturaleza lo acompañan, otorgándole armonía y conexión con su entorno.</p><br>
-                                        <!-- <p class="mb-1">Habilidad: Personaliza los colores de su galería de colección, manta o perfil.</p><br> -->
-                                        <p class="mb-0">Elegir: </span><input class="me-2" type="radio" name="avatarOption" id="avatarOption3"></p>
                                     </div>
                                 </div>
                             </div>

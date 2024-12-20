@@ -20,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($user && password_verify($password, $user['password'])) {
                 if ($user['status'] == 1) {
+                    $userModel->updateLastLogin($user['id']);
+
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['rol'] = $user['rol'];
                     header("Location:" . $pagina_login);

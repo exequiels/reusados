@@ -34,10 +34,11 @@ usort($allUsers, function ($a, $b) {
                                                 <h6><?= escape($user['username']); ?></h6>
                                             </div>
                                             <div class="details">
-                                                <p class="mb-1">Colección: <a href="#">Ver</a></p>
+                                                <p class="mb-1">Última conexión: <?= escape($user['last_login'] ?? 'N/A') ;?></p>
+                                                <!-- <p class="mb-1">Colección: <a href="#">Ver</a></p>
                                                 <p class="mb-1">Manta: <a href="#">Mercadería</a></p>
                                                 <p class="mb-1">Trades: <a href="#">Busca</a>/<a href="#">Ofrece</a></p>
-                                                <p class="mb-0">Voucheado: * veces</p>
+                                                <p class="mb-0">Voucheado: * veces</p> -->
                                             </div>
                                         </div>
                                     </div>

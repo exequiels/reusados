@@ -47,17 +47,6 @@ if (isset($_GET['consola'], $_GET['juego'], $_GET['buscar_por'])
 
 }
 
-// Poner portada al inicio
-// if (isset($imagenesJuego) && !empty($imagenesJuego)) {
-//     foreach ($imagenesJuego as $index => $imagen) {
-//         if (strpos(strtolower($imagen['image_path']), 'portada') !== false) {
-//             array_unshift($imagenesJuego, $imagen);
-//             unset($imagenesJuego[$index + 1]); // Eliminar el duplicado que queda en la posición original
-//             break;
-//         }
-//     }
-// }
-
 $redireccionUrlporJuego = "?dir=archivo"
     . (isset($_POST['consola']) ? "&consola=" . strtolower($_POST['consola']) : "")
     . (isset($_POST['juego']) ? "&juego=" . strtolower($_POST['juego']) : "")
@@ -514,6 +503,10 @@ $pagina_archivo = "https://www.reusados.net/?dir=archivo";
                             <?php endforeach; ?>                            
                         </ul>
                     </div>
+                    <?php else: ?>
+                        <div class="text-center mt-3">
+                            No hay aportes registrados.
+                        </div>
                     <?php endif; ?>
                 </div>
                 <div class="modal-footer d-flex justify-content-center align-items-center">
@@ -587,6 +580,10 @@ $pagina_archivo = "https://www.reusados.net/?dir=archivo";
                             <?php endforeach; ?>                            
                         </ul>
                     </div>
+                    <?php else: ?>
+                        <div class="text-center mt-3">
+                            No hay aportes registrados.
+                        </div>
                     <?php endif; ?>
                 </div>
                 <div class="modal-footer d-flex justify-content-center align-items-center">

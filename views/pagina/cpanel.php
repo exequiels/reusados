@@ -14,6 +14,15 @@ $totalErrors = $errorLogModel->countErrors();
 $totalPages = ceil($totalErrors / $errorsPerPage);
 
 $errors = $errorLogModel->getAllErrors();
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete_all') {
+    $deleteSuccess = $errorLogModel->deleteAllErrors();
+
+    if ($deleteSuccess) {
+        echo '<div class="alert alert-success">Logs eliminados.</div>';
+    } else {
+        echo '<div class="alert alert-danger">Error al intentar vaciar logs.</div>';
+    }
+}
 
 require_once './models/VideGameModel.php';
 require_once './models/PermisosModel.php';
@@ -97,20 +106,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['permisos'])) {
             Maintenance mode
         </td>
     </tr>
-    <tr> 
-        <td class="p-3">
-            <form method="post" action="">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>Activar el mantenimiento del sitio:</div>
-                    <button type="submit" name="maintenance" value="1" <?php echo(is_maintenance_on($maintenanceMode) ? 'disabled' : ''); ?>>On</button>
-                </div>
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                    <div>Desactivar el mantenimiento del sitio:</div>
-                    <button type="submit" name="maintenance" value="0" <?php echo(is_maintenance_on($maintenanceMode) ? '' : 'disabled'); ?>>Off</button>
-                </div>
-            </form>
-        </td>
-    </tr>
+    <tr>
+    <td class="p-3">
+        <form method="post" action="">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>Activar el mantenimiento del sitio:</div>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#maintenanceOnModal" <?php echo(is_maintenance_on($maintenanceMode) ? 'disabled' : ''); ?>>
+                    On
+                </button>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div>Desactivar el mantenimiento del sitio:</div>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#maintenanceOffModal" <?php echo(is_maintenance_on($maintenanceMode) ? '' : 'disabled'); ?>>
+                    Off
+                </button>
+            </div>
+        </form>
+    </td>
+</tr>
     <tr>
         <td class="p-3 bg-insidetabs">
             Error Logs
@@ -191,7 +204,7 @@ foreach ($errors as $error):
     </tr>
     <tr>
         <td class="p-3">
-            <form method="POST" action="">
+        <form id="controlAccessForm" method="POST" action="">
             <?php foreach ($roles as $rol): ?>
             <div class="container-fluid mt-3">
                 <div class="row">
@@ -228,7 +241,7 @@ foreach ($errors as $error):
             </div>
             <?php endforeach; ?>
             <div class="modal-footer d-flex justify-content-end align-items-center">
-                <input id="guardar_control" type="submit" name="submit" value="Guardar">
+                <input data-bs-toggle="modal" data-bs-target="#guardarControlModal" type="button" value="Guardar">
             </div>
         </td>
         </form>
@@ -263,8 +276,90 @@ foreach ($errors as $error):
             </table>
         </div>
         <div class="modal-footer d-flex justify-content-center align-items-center">
-            { Nota - a futuro implementar checkboxs e icono para borrar errores }
+            <form method="POST">
+                <input type="hidden" name="action" value="delete_all">
+                <input type="checkbox" id="confirmCheckbox" class="ms-2">
+                <label for="confirmCheckbox" class="ms-2">Confirmar</label>
+                <input type="submit" id="emptyLogsButton" name="submit" value="Vaciar logs" disabled>
+            </form>
         </div>
     </div>
   </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#confirmCheckbox').on('change', function () {
+            $('#emptyLogsButton').prop('disabled', !this.checked);
+        });
+    });
+</script>
+
+<!-- Modal para activar el mantenimiento -->
+<div class="modal fade" id="maintenanceOnModal" tabindex="-1" aria-labelledby="maintenanceOnModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">Confirmar Activación</span>
+                <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                El sitio no estará disponible para los usuarios.
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-bs-dismiss="modal">Cancelar</button>
+                <form method="post" action="" class="d-inline">
+                    <button type="submit" name="maintenance" value="1">Confirmar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para desactivar el mantenimiento -->
+<div class="modal fade" id="maintenanceOffModal" tabindex="-1" aria-labelledby="maintenanceOffModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">Confirmar Desactivación</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                El sitio estará disponible para los usuarios.
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-bs-dismiss="modal">Cancelar</button>
+                <form method="post" action="" class="d-inline">
+                    <button type="submit" name="maintenance" value="0">Confirmar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para guardar opciones de control access -->
+<div class="modal fade" id="guardarControlModal" tabindex="-1" aria-labelledby="guardarControlModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">Confirmar Guardado de Opciones</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Estas seguro que quieres guardar?
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-bs-dismiss="modal">Cancelar</button>
+                <form method="post" action="" class="d-inline">
+                    <button id="confirmarGuardar" type="button">Confirmar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#confirmarGuardar').on('click', function () {
+            $('#controlAccessForm').submit();
+        });
+    });
+</script>

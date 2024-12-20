@@ -80,7 +80,7 @@ class UserModel
     public function getAllUsers()
     {
         try {
-            $stmt = $this->pdo->prepare("SELECT id, username, rol, created_at, status FROM usuarios");
+            $stmt = $this->pdo->prepare("SELECT id, username, rol, created_at, last_login, status FROM usuarios");
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -94,6 +94,18 @@ class UserModel
             $stmt = $this->pdo->prepare('SELECT * FROM usuarios WHERE id = :id');
             $stmt->execute(['id' => $userId]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            throw $e;
+        }
+    }
+
+    public function updateLastLogin($userId)
+    {
+        try {
+            $sql = "UPDATE usuarios SET last_login = NOW() WHERE id = :id";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
+            $stmt->execute();
         } catch (PDOException $e) {
             throw $e;
         }
