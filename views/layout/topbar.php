@@ -21,9 +21,11 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-auto me-sm-2 mt-1 mb-1 d-block d-sm-none">
-                            <button type="button" class="w-100 border border-dark-subtle p-2"><a href="?dir=cpanel">Cpanel</a></button>
-                        </div>
+                        <?php if (has_permission(6)): ?>
+                            <div class="col-12 col-sm-auto me-sm-2 mt-1 mb-1 d-block d-sm-none">
+                                <button type="button" class="w-100 border border-dark-subtle p-2"><a href="?dir=cpanel">Cpanel</a></button>
+                            </div>
+                        <?php endif;?>
                     </div>
                     <div class="col-12 col-sm-auto me-sm-2 mt-1 mb-1 d-none d-sm-block">
                         <form action="?dir=logout&out=auto" method="post">

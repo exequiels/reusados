@@ -181,6 +181,7 @@ class VideoGameModel
             //             break;
             //     }
             // }
+            $sql .= " ORDER BY RAND()";
 
             $offset = ($page - 1) * $perPage;
             $sql .= " LIMIT :limit OFFSET :offset";

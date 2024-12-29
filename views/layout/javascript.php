@@ -35,6 +35,12 @@
 <?php endif; ?>
 <!-- // Archivo -->
 
+<!-- La mascara -->
+<?php if ($universo === 'la-mascara'): ?>
+    <!-- Leer mas -->
+    <script src="assets/js/leer_mas.js"></script>
+<?php endif; ?>
+
 <!-- Bazar -->
 <?php if ($universo === 'bazar'): ?>
     <script type="text/javascript">
@@ -47,5 +53,7 @@
     <script src="assets/js/buscador_resetear_filtros.js"></script>
     <!-- Armar select subcategorias -->
     <script src="assets/js/buscador_select_subcategoria.js"></script>
+    <!-- Leer mas -->
+    <script src="assets/js/leer_mas.js"></script>
 <?php endif; ?>
 <!-- // Bazar -->

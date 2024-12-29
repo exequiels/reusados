@@ -2,7 +2,7 @@
 denied_permissions_functions(8);
 
 // Pagina default cuando las busquedas se salen de las validaciones
-$pagina_buscador = $url_base . "?dir=gamehunt";
+$pagina_buscador = $url_base . "?dir=la-mascara";
 $noHayResultados = "No hay resultado para mostrar.";
 
 // Validar los datos obtenidos de los selects
@@ -49,6 +49,8 @@ $allData = $videoGameModel->getAllVideoGamesMask($filters, $page, $perPage);
 //     exit;
 // }
 
+$pais = 'argentina';
+$categoria = 'videojuegos';
 require_once "utils/funciones_paises_y_categorias.php";
 $pais = convertirPais($pais);
 $categoria = convertirCategoria($categoria);
@@ -62,8 +64,10 @@ $categoria = convertirCategoria($categoria);
                 <div class="user-info text-start flex-grow-1">
                     <div class="details">
                         <p class="mb-1">
-                        Pocos logran usarla, y aún menos comprenden su verdadero poder. Por ahora, te permitirá ver más allá de lo visible... pero solo por unos breves momentos. Cuando la energía de la máscara se agote, los secretos volverán a esconderse. Para dominarla por completo, necesitarás algo más que simple curiosidad. Vuelve cuando seas más fuerte..."
+                            Pocos logran usarla, y aún menos comprenden su verdadero poder. Por ahora, te permitirá ver más allá de lo visible...
+                            <span id="more" class="d-none d-sm-inline">pero solo por unos breves momentos. Cuando la energía de la máscara se agote, los secretos volverán a esconderse. Para dominarla por completo, necesitarás algo más que simple curiosidad. Vuelve cuando seas más fuerte...</span>
                         </p>
+                        <a href="javascript:void(0);" id="leer_mas" class="text-primary d-sm-none">... leer más</a>
                     </div>
                 </div>
                 <img src="assets/imgs/oraculo.png" 

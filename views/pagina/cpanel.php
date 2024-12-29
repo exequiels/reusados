@@ -51,12 +51,12 @@ $lastRunRepuestos = $cronLogModel->getLastRunByJobName('setRepuestos') ?? 'nunca
 $lastRunVarios = $cronLogModel->getLastRunByJobName('setVarios') ?? 'nunca';
 
 $cronJobs = [
-    ['name' => 'Accesorios', 'action' => 'config/cron_accesorios.php', 'lastRun' => $lastRunAccesorios],
-    ['name' => 'Consolas', 'action' => 'config/cron_consolas.php', 'lastRun' => $lastRunConsolas],
-    ['name' => 'Del día', 'action' => 'config/cron_del_dia.php', 'lastRun' => $lastRunDelDia],
-    ['name' => 'Juegos', 'action' => 'config/cron_juegos.php', 'lastRun' => $lastRunJuegos],
-    ['name' => 'Repuestos', 'action' => 'config/cron_repuestos.php', 'lastRun' => $lastRunRepuestos],
-    ['name' => 'Varios', 'action' => 'config/cron_varios.php', 'lastRun' => $lastRunVarios],
+    ['name' => 'Accesorios', 'action' => 'config/crons/cron_accesorios.php', 'lastRun' => $lastRunAccesorios],
+    ['name' => 'Consolas', 'action' => 'config/crons/cron_consolas.php', 'lastRun' => $lastRunConsolas],
+    ['name' => 'Del día', 'action' => 'config/crons/cron_del_dia.php', 'lastRun' => $lastRunDelDia],
+    ['name' => 'Juegos', 'action' => 'config/crons/cron_juegos.php', 'lastRun' => $lastRunJuegos],
+    ['name' => 'Repuestos', 'action' => 'config/crons/cron_repuestos.php', 'lastRun' => $lastRunRepuestos],
+    ['name' => 'Varios', 'action' => 'config/crons/cron_varios.php', 'lastRun' => $lastRunVarios],
 ];
 
 // Control Access
@@ -178,19 +178,22 @@ foreach ($errors as $error):
                     </div>
                     <div id="flush-collapseOne" class="accordion-collapse collapse border border-dark mt-3" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
-                            <?php foreach ($cronJobs as $job): ?>
-                                <form action="<?= $job['action'] ?>" method="post">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div><?= $job['name'] ?></div>
-                                        <button type="submit">Ejecutar</button>
-                                    </div>
-                                </form>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div>Última ejecución:</div>
-                                    <div><?= $job['lastRun'] ?></div>
-                                </div>
-                                <hr />
-                            <?php endforeach; ?>
+                            <ul class="list-group list-group-flush">
+                                <?php foreach ($cronJobs as $job): ?>
+                                    <li class="list-group-item">
+                                        <form action="<?= $job['action'] ?>" method="post">
+                                            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center mt-2">
+                                                <div><?= $job['name'] ?></div>    
+                                                <div><button type="submit">Ejecutar</button></div>
+                                            </div>
+                                        </form>
+                                        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center mt-3">
+                                            <div>Última ejecución:</div>
+                                            <div><?= $job['lastRun'] ?></div>
+                                        </div>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
                         </div>
                     </div>
                 </div>

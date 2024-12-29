@@ -90,13 +90,17 @@ if (!isset($_GET['pais']) || !isset($_GET['categoria'])) {
                                         <div class="user-info text-start flex-grow-1">
                                             <div class="details">
                                                 <p class="mb-1">
-                                                    Entras a un bazar antiguo, lleno de estanterías desvencijadas y rincones olvidados. Entre cajas polvorientas y curiosidades en desorden, un objeto destaca y te atrae de inmediato. Al tocarlo, una extraña claridad te invade, como si todo cobrara sentido por un instante. Fascinado, preguntas por él. La anticuaria te dice que perteneció a un legendario coleccionista, pero no está a la venta. "Puedes venir a verla cuando quieras...", susurra.
+                                                    Entras a un bazar antiguo, lleno de estanterías desvencijadas y rincones olvidados. Entre cajas polvorientas y curiosidades en desorden, un objeto destaca y te atrae de inmediato.
+                                                    <span id="more" class="d-none d-sm-inline">
+                                                        Al tocarlo, una extraña claridad te invade, como si todo cobrara sentido por un instante. Fascinado, preguntas por él. La anticuaria te dice que perteneció a un legendario coleccionista, pero no está a la venta. "Puedes venir a verla cuando quieras...", susurra.
+                                                    </span>
                                                 </p>
+                                                <a href="javascript:void(0);" id="leer_mas" class="text-primary d-sm-none">... leer más</a>
                                             </div>
                                         </div>
                                         <a href="?dir=la-mascara" title="La mascara de Go...">
                                             <img src="assets/imgs/mascara.jpeg" 
-                                            class="border border-dark mt-3 mt-md-0" 
+                                            class="border border-primary border-3 mt-3 mt-md-0" 
                                             width="120px" height="120px" 
                                             />
                                         </a>

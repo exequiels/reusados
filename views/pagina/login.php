@@ -1,7 +1,7 @@
 <?php
 require_once 'utils/email_encrypt_functions.php';
 
-$pagina_login = $url_base . "?dir=login";
+$pagina_login = $url_base . "?dir=inicio";
 
 $email = '';
 $password = '';

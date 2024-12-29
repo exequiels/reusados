@@ -13,7 +13,7 @@ $perfil = $userModel->getUserDetailsById($_SESSION['user_id']);
             <p>Nickname: <?= escape($perfil['username']); ?></p>
             <p>Nombre: <?= escape($perfil['fullname']); ?></p>
             <p>Registro: <?= escape($perfil['created_at']); ?></p>
-            <p>Nivel: <?= escape(nivelDeUsuario($perfil['rol'])); ?></p>
+            <p>Rango: <?= escape(nivelDeUsuario($perfil['rol'])); ?></p>
         </td>
     </tr>
 </table>

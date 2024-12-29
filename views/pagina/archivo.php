@@ -152,7 +152,7 @@ $pagina_archivo = "https://www.reusados.net/?dir=archivo";
             <div class="form-group mt-3">
             Consola:
                 <select name="consola" id="consola" class="filtros" required>
-                    <option value=""> - Selecciona una consola - </option>
+                    <option value="">- Seleccionar - </option>
                     <?php foreach($archivoConsolas as $consola): ?>
                         <option value="<?= escape(strtolower($consola['sistema'])) ?>" <?= ($consolas === strtolower($consola['sistema'])) ? 'selected' : ''; ?>><?= escape($consola['sistema']) ?></option>
                     <?php endforeach; ?>
@@ -161,7 +161,7 @@ $pagina_archivo = "https://www.reusados.net/?dir=archivo";
             <div class="form-group mt-3">
                 Juego:
                 <select name="juego" id="juego" class="filtros">
-                    <option value=""> - Selecciona un juego - </option>
+                    <option value="">- Seleccionar -</option>
                     <?php if (!empty($archivoJuegos)): ?>
                         <?php foreach($archivoJuegos as $juego): ?>
                             <option value="<?= escape(strtolower($juego['juego'])); ?>" <?= ($juegos === strtolower($juego['juego'])) ? 'selected' : ''; ?>><?= escape($juego['juego']); ?></option>

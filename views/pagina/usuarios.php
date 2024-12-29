@@ -30,15 +30,16 @@ usort($allUsers, function ($a, $b) {
 
                                         <!-- Información del usuario -->
                                         <div class="user-info text-center text-md-start flex-grow-1">
-                                            <div class="username mb-2">
-                                                <h6><?= escape($user['username']); ?></h6>
+                                            <div class="username">
+                                                <p><h6><?= escape($user['username']); ?></h6></p>
                                             </div>
                                             <div class="details">
-                                                <p class="mb-1">Última conexión: <?= escape($user['last_login'] ?? 'N/A') ;?></p>
-                                                <!-- <p class="mb-1">Colección: <a href="#">Ver</a></p>
-                                                <p class="mb-1">Manta: <a href="#">Mercadería</a></p>
-                                                <p class="mb-1">Trades: <a href="#">Busca</a>/<a href="#">Ofrece</a></p>
-                                                <p class="mb-0">Voucheado: * veces</p> -->
+                                                <p>Rango: <?= escape(nivelDeUsuario($user['rol'])); ?></p>
+                                                <p>Última conexión: <?= escape($user['last_login'] ?? 'N/A') ;?></p>
+                                                <!-- <p>Colección: <a href="#">Ver</a></p>
+                                                <p>Manta: <a href="#">Mercadería</a></p>
+                                                <p>Trades: <a href="#">Busca</a>/<a href="#">Ofrece</a></p>
+                                                <p>Voucheado: * veces</p> -->
                                             </div>
                                         </div>
                                     </div>

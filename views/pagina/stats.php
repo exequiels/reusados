@@ -15,20 +15,22 @@ $noHayResultados = "No hay resultado para mostrar.";
         <p>Total de busquedas realizadas <?php echo $totalClicks ?>.</p>
         <p>La subcategoría mas cautivadora del bazar.</p>
             <table class="table table-sm table-bordered border-estilo mt-4">
-                <?php if (!empty($clicksSubcategorias)): ?>    
-                    <thead>
-                        <tr>
-                            <td>Subcategoría</td>
-                            <td>Interés</td>
-                        </tr>
-                    </thead>
+                <?php if (!empty($clicksSubcategorias)): ?>
                     <tbody>
-                        <?php foreach ($clicksSubcategorias as $entry): ?>
-                            <tr>
-                                <td><?php echo escape($entry['subcategoria']); ?></td>
-                                <td><?php echo escape($entry['total_clicks']); ?></td>
-                            </tr>
-                        <?php endforeach; ?>
+                        <tr>
+                            <td>
+                                <ul class="list-group list-group-flush">
+                                    <?php foreach ($clicksSubcategorias as $entry): ?>
+                                        <li class="list-group-item">
+                                            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center mt-2">
+                                                <div><?php echo escape($entry['subcategoria']); ?></div>    
+                                                <div><?php echo escape($entry['total_clicks']); ?> hits</div>
+                                            </div>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </td>
+                        </tr>
                     </tbody>
                 <?php else: ?>
                     <tr> 
