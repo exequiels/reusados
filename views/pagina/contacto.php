@@ -2,9 +2,9 @@
 $mensaje_confirmacion = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombre = escape($_POST["nombre"]);
-    $email = escape($_POST["email"]);
-    $mensaje = escape($_POST["mensaje"]);
+    $nombre = !empty($_POST["nombre"]) ? escape($_POST["nombre"]) : "";
+    $email = !empty($_POST["email"]) ? escape($_POST["email"]) : "";
+    $mensaje = !empty($_POST["mensaje"]) ? escape($_POST["mensaje"]) : "";
 
     $asunto = "Mensaje de contacto de $nombre";
     $contenido = "Nombre: $nombre\n";
@@ -12,7 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contenido .= "Mensaje:\n$mensaje";
 
     // Envía el correo
-    if (mail($contacto_destinatario, $asunto, $contenido)) {
+    if (empty($nombre) || empty($email) || empty($mensaje)) {
+        $mensaje_confirmacion = "Todos los campos son obligatorios.";
+    } elseif (mail($contacto_destinatario, $asunto, $contenido)) {
         $mensaje_confirmacion = "Mensaje enviado :)";
     } else {
         $mensaje_confirmacion = "Error al enviar el mensaje :(";

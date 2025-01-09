@@ -1,4 +1,4 @@
-<form id="search-form" action="?dir=bazar" method="get">
+<form id="search-form" action="?dir=inicio" method="get">
     <div class="form-group mt-3">
         Pais:   <select name="pais" id="pais" class="filtros" required>
             <option value=""> -- Elige Pais -- </option>
@@ -49,13 +49,6 @@
             <?php endforeach; ?>
         </select>
     </div>
-    <!-- <div class="form-group mt-3">
-        Publicaciones: <select name="publicaciones" class="filtros">
-            <option value="">Todas</option>
-            <option value="destacados" <?//php echo (isset($_GET['publicaciones']) && $_GET['publicaciones'] === 'destacados') ? 'selected' : ''; ?>>+ Recientes</option>
-            <option value="oportunidad" <?//php echo (isset($_GET['publicaciones']) && $_GET['publicaciones'] === 'oportunidad') ? 'selected' : ''; ?>>- Recienctes</option>
-        </select>
-    </div> -->
     <div class="d-flex justify-content-end mt-3">
         <input type="submit" value="Resetear" id="resetearbtn">
     </div>

@@ -8,7 +8,6 @@ body {
     "Lucida Console", Terminal, "Courier New", Courier;
   padding: 24px 15px;
   border: 10px solid #f3f0e9;
-  padding: 10px;
   box-sizing: border-box;
 }
 header,
@@ -49,7 +48,6 @@ footer {
   background-color: #f3f0e9;
   padding: 10px;
   border: 20px solid #2a4f6e;
-  padding: 10px;
   box-sizing: border-box;
 }
 
@@ -111,6 +109,8 @@ footer {
   height: 100%;
   top: 0;
   left: 0;
+  z-index: 1;
+  pointer-events: none;
 }
 
 #scanlines {
@@ -149,12 +149,14 @@ footer {
 }
 
 #wakeup {
+  position: relative;
   padding-left: 50px;
   padding-top: 40px;
   color: blue;
   text-shadow: 1px 1px 2px rgba(0, 47, 255, 0.8), 0 0 10px rgba(0, 47, 255, 0.6),
     0 0 15px rgba(18, 1, 248, 0.4);
   /* animation: screen-shake 0.1s infinite; */
+  z-index: 2;
 }
 
 .cursor {
@@ -185,7 +187,6 @@ footer {
 }
 
 .day {
-  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -304,7 +305,6 @@ footer {
   body {
     padding: 22px 12px;
     border: 8px solid #f3f0e9;
-    padding: 8px;
     box-sizing: border-box;
   }
   .custom-h7 {
@@ -319,6 +319,9 @@ footer {
   }
   #screen {
     height: 250px;
+  }
+  #wakeup {
+    padding-left: 20px;
   }
 }
 

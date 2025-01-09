@@ -49,26 +49,8 @@ $seccionCentral = ob_get_clean();
         <?php require_once "views/layout/header.php"; ?>
         <!-- // Header -->
         <!-- Main Content -->
-        <div class="container mt-2 mt-sm-4">
+        <div class="container">
             <div class="row">
-                <?php if (!is_maintenance_on($maintenanceMode)): ?>
-                    <!-- Topbar -->
-                    <div class="col-lg-12 col-md-11 col-sm-11 col-10 mx-auto">
-                        <div class="row">
-                            <?php require_once "views/layout/topbar.php"; ?>
-                        </div>
-                    </div>
-                    <!-- // Topbar -->
-                    <?php if (isset($_SESSION['user_id'])): ?>
-                    <!-- Menu -->
-                        <div class="col-lg-2 col-sm-11 col-10 mx-auto">
-                            <div class="row">
-                                <?php require_once "views/layout/menu.php"; ?>
-                            </div>
-                        </div>
-                    <?php endif;?>
-                <?php endif; ?>
-                <!-- // Menu -->
                 <!-- Seccion central -->
                 <div class="col-lg-9 col-md-11 col-sm-11 col-10 mx-auto central-item">
                     <div class="row">

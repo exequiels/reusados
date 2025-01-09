@@ -1,6 +1,4 @@
 <?php
-denied_permissions_functions(1);
-
 $archivoModel = new ArchivoModel($pdo);
 $usuario = $userModel->getUserDetailsById($_SESSION['user_id']);
 $archivoConsolas = $archivoModel->getArchivoConsolas();

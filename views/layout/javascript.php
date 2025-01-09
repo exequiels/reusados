@@ -10,6 +10,12 @@
 <?php if ($universo !== 'inicio'): ?>
     <!-- Cerrar ventana -->
     <script src="assets/js/icono_cerrar_seccion_central.js"></script>
+    <!-- Armar url -->
+    <script src="assets/js/buscador_url.js"></script>
+    <!-- Resetear filtros -->
+    <script src="assets/js/buscador_resetear_filtros.js"></script>
+    <!-- Armar select subcategorias -->
+    <script src="assets/js/buscador_select_subcategoria.js"></script>
 <?php endif; ?>
 <!-- // Seccion central -->
 
@@ -34,26 +40,3 @@
     <?php endif;?>
 <?php endif; ?>
 <!-- // Archivo -->
-
-<!-- La mascara -->
-<?php if ($universo === 'la-mascara'): ?>
-    <!-- Leer mas -->
-    <script src="assets/js/leer_mas.js"></script>
-<?php endif; ?>
-
-<!-- Bazar -->
-<?php if ($universo === 'bazar'): ?>
-    <script type="text/javascript">
-        const baseUrl = "<?php echo escape($url_base, ENT_QUOTES, 'UTF-8'); ?>";
-        const desvioUrl = "<?php echo escape($desvioUrl, ENT_QUOTES, 'UTF-8'); ?>";
-    </script>
-    <!-- Armar url -->
-    <script src="assets/js/buscador_url.js"></script>
-    <!-- Resetear filtros -->
-    <script src="assets/js/buscador_resetear_filtros.js"></script>
-    <!-- Armar select subcategorias -->
-    <script src="assets/js/buscador_select_subcategoria.js"></script>
-    <!-- Leer mas -->
-    <script src="assets/js/leer_mas.js"></script>
-<?php endif; ?>
-<!-- // Bazar -->

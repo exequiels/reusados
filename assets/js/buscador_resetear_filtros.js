@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .addEventListener("click", function (event) {
       if (event.target && event.target.id === "resetearbtn") {
         event.preventDefault();
-        window.location.href = baseUrl + "?dir=bazar";
+        window.location.href = baseUrl + "?dir=inicio";
       }
     });
 });

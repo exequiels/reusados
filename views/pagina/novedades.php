@@ -2,7 +2,11 @@
     <?php include_once "views/layout/encabezado_de_tabla.php"; ?>
     <tr> 
         <td class="p-3" colspan="2">
-            Acceseso restringido.
+            <div class="form-group mt-3">
+                <article>                    
+                <h6>Novedades</h6>
+                </article>
+            </div>
         </td>
     </tr>
 </table>

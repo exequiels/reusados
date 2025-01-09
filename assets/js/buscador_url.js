@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    const url = baseUrl + "?dir=bazar";
+    const url = baseUrl + "?dir=inicio";
 
     if (params.length > 0) {
       const newUrl = url + "&" + params.join("&");

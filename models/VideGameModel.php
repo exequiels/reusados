@@ -148,40 +148,39 @@ class VideoGameModel
             $sql = "SELECT * FROM mla_consolasyvideojuegos_del_dia WHERE 1=1";
             $params = [];
 
-            // if (!empty($filters['palabra'])) {
-            //     $sql .= " AND all_titles LIKE :palabra";
-            //     $params[':palabra'] = '%' . $filters['palabra'] . '%';
-            // }
+            if (!empty($filters['palabra'])) {
+                $sql .= " AND all_titles LIKE :palabra";
+                $params[':palabra'] = '%' . $filters['palabra'] . '%';
+            }
 
-            // if (!empty($filters['subcategoria'])) {
-            //     $sql .= " AND all_item_categoria = :subcategoria";
-            //     $params[':subcategoria'] = $filters['subcategoria'];
-            // }
+            if (!empty($filters['subcategoria'])) {
+                $sql .= " AND all_item_categoria = :subcategoria";
+                $params[':subcategoria'] = $filters['subcategoria'];
+            }
 
-            // if (!empty($filters['precio_min'])) {
-            //     $sql .= " AND CAST(all_prices AS DECIMAL) >= :precio_min";
-            //     $params[':precio_min'] = $filters['precio_min'];
-            // }
+            if (!empty($filters['precio_min'])) {
+                $sql .= " AND CAST(all_prices AS DECIMAL) >= :precio_min";
+                $params[':precio_min'] = $filters['precio_min'];
+            }
 
-            // if (!empty($filters['precio_max'])) {
-            //     $sql .= " AND CAST(all_prices AS DECIMAL) <= :precio_max";
-            //     $params[':precio_max'] = $filters['precio_max'];
-            // }
+            if (!empty($filters['precio_max'])) {
+                $sql .= " AND CAST(all_prices AS DECIMAL) <= :precio_max";
+                $params[':precio_max'] = $filters['precio_max'];
+            }
 
-            // if (!empty($filters['orden'])) {
-            //     switch ($filters['orden']) {
-            //         case 'precio_asc':
-            //             $sql .= " ORDER BY CAST(all_prices AS DECIMAL) ASC";
-            //             break;
-            //         case 'precio_desc':
-            //             $sql .= " ORDER BY CAST(all_prices AS DECIMAL) DESC";
-            //             break;
-            //         case 'alfabetico':
-            //             $sql .= " ORDER BY all_titles ASC";
-            //             break;
-            //     }
-            // }
-            $sql .= " ORDER BY RAND()";
+            if (!empty($filters['orden'])) {
+                switch ($filters['orden']) {
+                    case 'precio_asc':
+                        $sql .= " ORDER BY CAST(all_prices AS DECIMAL) ASC";
+                        break;
+                    case 'precio_desc':
+                        $sql .= " ORDER BY CAST(all_prices AS DECIMAL) DESC";
+                        break;
+                    case 'alfabetico':
+                        $sql .= " ORDER BY all_titles ASC";
+                        break;
+                }
+            }
 
             $offset = ($page - 1) * $perPage;
             $sql .= " LIMIT :limit OFFSET :offset";
@@ -203,39 +202,39 @@ class VideoGameModel
             $sql = "SELECT COUNT(*) FROM mla_consolasyvideojuegos_del_dia WHERE 1=1";
             $params = [];
 
-            // if (!empty($filters['palabra'])) {
-            //     $sql .= " AND all_titles LIKE :palabra";
-            //     $params[':palabra'] = '%' . $filters['palabra'] . '%';
-            // }
+            if (!empty($filters['palabra'])) {
+                $sql .= " AND all_titles LIKE :palabra";
+                $params[':palabra'] = '%' . $filters['palabra'] . '%';
+            }
 
-            // if (!empty($filters['subcategoria'])) {
-            //     $sql .= " AND all_item_categoria = :subcategoria";
-            //     $params[':subcategoria'] = $filters['subcategoria'];
-            // }
+            if (!empty($filters['subcategoria'])) {
+                $sql .= " AND all_item_categoria = :subcategoria";
+                $params[':subcategoria'] = $filters['subcategoria'];
+            }
 
-            // if (!empty($filters['precio_min'])) {
-            //     $sql .= " AND CAST(all_prices AS DECIMAL) >= :precio_min";
-            //     $params[':precio_min'] = $filters['precio_min'];
-            // }
+            if (!empty($filters['precio_min'])) {
+                $sql .= " AND CAST(all_prices AS DECIMAL) >= :precio_min";
+                $params[':precio_min'] = $filters['precio_min'];
+            }
 
-            // if (!empty($filters['precio_max'])) {
-            //     $sql .= " AND CAST(all_prices AS DECIMAL) <= :precio_max";
-            //     $params[':precio_max'] = $filters['precio_max'];
-            // }
+            if (!empty($filters['precio_max'])) {
+                $sql .= " AND CAST(all_prices AS DECIMAL) <= :precio_max";
+                $params[':precio_max'] = $filters['precio_max'];
+            }
 
-            // if (!empty($filters['orden'])) {
-            //     switch ($filters['orden']) {
-            //         case 'precio_asc':
-            //             $sql .= " ORDER BY CAST(all_prices AS DECIMAL) ASC";
-            //             break;
-            //         case 'precio_desc':
-            //             $sql .= " ORDER BY CAST(all_prices AS DECIMAL) DESC";
-            //             break;
-            //         case 'alfabetico':
-            //             $sql .= " ORDER BY all_titles ASC";
-            //             break;
-            //     }
-            // }
+            if (!empty($filters['orden'])) {
+                switch ($filters['orden']) {
+                    case 'precio_asc':
+                        $sql .= " ORDER BY CAST(all_prices AS DECIMAL) ASC";
+                        break;
+                    case 'precio_desc':
+                        $sql .= " ORDER BY CAST(all_prices AS DECIMAL) DESC";
+                        break;
+                    case 'alfabetico':
+                        $sql .= " ORDER BY all_titles ASC";
+                        break;
+                }
+            }
 
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute($params);
