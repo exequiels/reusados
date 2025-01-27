@@ -1,6 +1,6 @@
 <?php
 $archivoModel = new ArchivoModel($pdo);
-$usuario = $userModel->getUserDetailsById($_SESSION['user_id']);
+$usuario = isset($_SESSION['user_id']) ? $userModel->getUserDetailsById($_SESSION['user_id']) : ['username' => 'guest'];
 $archivoConsolas = $archivoModel->getArchivoConsolas();
 $archivoJuegos = [];
 $juegoDetalles = null;

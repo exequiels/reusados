@@ -20,7 +20,7 @@ $errorHandler = new ErrorHandler($pdo);
 $userModel = new UserModel($pdo);
 $permisosModel = new PermisosModel($pdo);
 $configModel = new ConfigModel($pdo);
-$userRole = isset($_SESSION['user_id']) ? $userModel->getUserRole($_SESSION['user_id']) : '';
+$userRole = !empty($_SESSION['user_id']) ? $userModel->getUserRole($_SESSION['user_id']) : 'guest';
 $maintenanceMode = $configModel->getMaintenanceMode();
 
 // check_auth();
@@ -51,6 +51,17 @@ $seccionCentral = ob_get_clean();
         <!-- Main Content -->
         <div class="container">
             <div class="row">
+                <?php if (!is_maintenance_on($maintenanceMode)): ?>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                    <!-- Topbar -->
+                    <div class="col-lg-12 col-md-11 col-sm-11 col-10 mx-auto">
+                        <div class="row">
+                            <?php require_once "views/layout/topbar.php"; ?>
+                        </div>
+                    </div>
+                    <!-- // Topbar -->
+                    <?php endif;?>
+                <?php endif; ?>
                 <!-- Seccion central -->
                 <div class="col-lg-9 col-md-11 col-sm-11 col-10 mx-auto central-item">
                     <div class="row">

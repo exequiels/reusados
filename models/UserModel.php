@@ -110,4 +110,16 @@ class UserModel
             throw $e;
         }
     }
+    public function getGuestUser()
+    {
+        return [
+            'id' => null,
+            'username' => 'guest',
+            'email' => null,
+            'rol' => 'guest',
+            'status' => 1,
+            'last_login' => null,
+            'created_at' => null,
+        ];
+    }
 }

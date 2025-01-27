@@ -34,7 +34,7 @@ function extraerDatos($pdo, $SITE_ID, $ACCESS_TOKEN, $categories)
         do {
             logMessage("Iniciando llamada API para '$category', offset: $offset");
             // $url = "https://api.mercadolibre.com/sites/$SITE_ID/search?q=" . urlencode($term) . "&category=$category&condition=use&since=todayd&offset=$offset";
-            $url = "https://api.mercadolibre.com/sites/$SITE_ID/search?category=$category&condition=used&since=todayd&offset=$offset";
+            $url = "https://api.mercadolibre.com/sites/$SITE_ID/search?category=$category&condition=used&since=today&offset=$offset";
             $curl = curl_init($url);
             curl_setopt($curl, CURLOPT_URL, $url);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
